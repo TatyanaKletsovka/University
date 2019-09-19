@@ -9,7 +9,7 @@ places smallint not null,
 passing_points smallint not null
 );
 
-drop table application;
+drop table user;
 select * from faculty;
 
 create table subject (
@@ -37,9 +37,11 @@ foreign key(subject_id) references subject(id)
 
 create table user (
 id int primary key auto_increment not null,
-name varchar(40) not null,
 login varchar(25) not null,
 password varchar(25) not null,
+role enum('admin', 'user') not null default 'user',
+firstName varchar(25) not null,
+secondName varchar(25) not null,
 certificate smallint
 );
 
@@ -67,4 +69,4 @@ foreign key(user_id) references user(id)
 
 
 
-create index name_1 on student (student_id)
+create index name_1 on student (student_id);

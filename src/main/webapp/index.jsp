@@ -1,24 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+
+<fmt:bundle basename="page_content">
+    <fmt:message key="login.title" var="title"/>
+    <fmt:message key="login.log_in" var="log_in"/>
+    <fmt:message key="login.enter_login" var="enter_login"/>
+    <fmt:message key="login.enter_password" var="enter_password"/>
+
+</fmt:bundle>
+
 <html>
-<head>
-<title>Login</title>
+    <head>
+        <title>Login</title>
 </head>
 
-<body>
-<form name="loginForm" method="POST" action="controller">
-<input type="hidden" name="command" value="login" />
-Login:<br/>
-<input type="text" name="login" value=""/>
-<br/>Password:<br/>
-<input type="password" name="password" value=""/>
-<br/>
-${errorLoginPassMessage}
-<br/>
-${wrongAction}
-<br/>
-${nullPage}
-<br/>
- <input type="submit" value="Log in"/>
-</form><hr/>
+<body class="page">
+
+
+    <div>
+        <%@ include file="/jsp/header.jsp"%>
+    </div>
+
+    <div class="wrapper_form">
+
+        <input type="hidden" name="jspPath" value="/jsp/main.jsp" />
+
+        <form name="loginForm" method="POST" action="controller">
+            <input type="hidden" name="command" value="login" />
+        <p><label>${pageScope.enter_login}<input class="log_input" type="text" name="login" value=""/></label></p>
+        <p><label>${pageScope.enter_password}<input class="log_input" type="password" name="password" value=""/></label></p>
+        ${errorLoginPassMessage}
+        <br/>
+        ${wrongAction}
+        <br/>
+        ${nullPage}
+        <br/>
+             <input type="submit" value="${pageScope.log_in}"/>
+        </form>
+    </div>
+
+        <div>
+
+
+
+               <%@ include file="/jsp/mainmenu.jsp"%>
+
+        </div>
+
+
+    <div>
+        <%@ include file="/jsp/footer.jsp"%>
+    </div>
 </body>
+
 </html>

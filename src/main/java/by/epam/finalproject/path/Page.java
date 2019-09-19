@@ -1,3 +1,4 @@
+/*
 package by.epam.finalproject.path;
 
 public class Page {
@@ -7,3 +8,4 @@ public class Page {
     public static final String ERROR = "/jsp/error/error.jsp";
 
 }
+*/

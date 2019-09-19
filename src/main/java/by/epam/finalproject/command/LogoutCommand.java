@@ -1,6 +1,6 @@
 package by.epam.finalproject.command;
 
-import by.epam.finalproject.path.Page;
+//import by.epam.finalproject.path.Page;
 import by.epam.finalproject.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;

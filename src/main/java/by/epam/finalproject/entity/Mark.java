@@ -1,7 +1,7 @@
 package by.epam.finalproject.entity;
 
-public class Mark {
+public class Mark extends Entity{
 
-    private SUBJECT subject;
+    private Subject subject;
     private int value;
 }

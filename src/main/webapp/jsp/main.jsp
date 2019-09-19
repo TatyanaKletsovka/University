@@ -1,9 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<html><head><title>Welcome</title></head>
-<body>
-<h3>Welcome</h3>
-<hr/>
-${user}, hello!
-<hr/>
-<a href="controller?command=logout">Logout</a>
-</body></html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+
+<fmt:bundle basename="page_content">
+    <fmt:message key="login.title" var="title"/>
+    <fmt:message key="login.log_in" var="log_in"/>
+    <fmt:message key="login.enter_login" var="enter_login"/>
+    <fmt:message key="login.enter_password" var="enter_password"/>
+</fmt:bundle>
+<html>
+
+
+    <body class="page">
+
+        <input type="hidden" name="pageUrl" value="/jsp/main.jsp" />
+
+        <div>
+           <%@ include file="/jsp/header.jsp"%>
+        </div>
+
+        <div>
+           <%@ include file="/jsp/mainmenu.jsp"%>
+        </div>
+
+
+        <div>
+            <%@ include file="/jsp/footer.jsp"%>
+        </div>
+    </body>
+</html>

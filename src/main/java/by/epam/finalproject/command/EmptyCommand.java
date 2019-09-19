@@ -1,6 +1,5 @@
 package by.epam.finalproject.command;
 
-import by.epam.finalproject.path.Page;
 import by.epam.finalproject.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,7 @@ public class EmptyCommand implements ActionCommand {
         /* в случае ошибки или прямого обращения к контроллеру
          * переадресация на страницу ввода логина */
         String page = //Page.LOGIN;
-        ConfigurationManager.getProperty("path.page.login");
+        ConfigurationManager.getProperty("path.page.index");
         return page;
     }
 }

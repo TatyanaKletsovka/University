@@ -1,10 +1,8 @@
 package by.epam.finalproject.command.client;
 
-import by.epam.finalproject.command.ActionCommand;
-import by.epam.finalproject.command.LoginCommand;
-import by.epam.finalproject.command.LogoutCommand;
+import by.epam.finalproject.command.*;
 
-public enum  CommandEnum {
+public enum CommandType {
     LOGIN {
         {
             this.command = new LoginCommand();
@@ -13,6 +11,16 @@ public enum  CommandEnum {
     LOGOUT {
         {
             this.command = new LogoutCommand();
+        }
+    },
+    COMMON_CHANGE_LANGUAGE {
+        {
+            this.command = new ChangeLanguageCommand();
+        }
+    },
+    SHOW_ALL_FACULTIES {
+        {
+            this.command = new ShowAllFaculties();
         }
     };
     ActionCommand command;

@@ -1,21 +1,21 @@
 use university;
 
-insert into faculty (name, places, subjects_for_admission, passingPoints) values
-('Faculty of Biology', 15, 1, 271), 
-('Faculty of Geography and Geoinformatics', 10, 2, 214),
-('Faculty of Journalism', 7, 3, 311),
-('Faculty of History', 14, 4, 254),
-('Faculty of Mechanics and Mathematics', 20, 5, 345),
-('Faculty of International Relations', 6, 6, 324),
-('Faculty of Applied Mathematics and Computer Science', 12, 7, 365),
-('Faculty of Radiophysics and Computer Technology', 7, 8, 357),
-('Faculty of Sociocultural Communications', 16, 9, 239),
-('Faculty of Philosophy and Social Sciences', 17, 10, 251),
-('Faculty of Physics', 12, 11, 316),
-('Faculty of Philology', 15, 12, 248),
-('Chemical faculty', 9, 13, 288),
-('Faculty of Economics', 19, 14, 259),
-('Faculty of Law', 18, 15, 333)
+insert into faculty (name, places, passingPoints) values
+('Faculty of Biology', 15, 271), 
+('Faculty of Geography and Geoinformatics', 10, 214),
+('Faculty of Journalism', 7, 311),
+('Faculty of History', 14, 254),
+('Faculty of Mechanics and Mathematics', 20, 345),
+('Faculty of International Relations', 6, 324),
+('Faculty of Applied Mathematics and Computer Science', 12, 365),
+('Faculty of Radiophysics and Computer Technology', 7, 357),
+('Faculty of Sociocultural Communications', 16, 239),
+('Faculty of Philosophy and Social Sciences', 17, 251),
+('Faculty of Physics', 12, 316),
+('Faculty of Philology', 15, 248),
+('Chemical faculty', 9, 288),
+('Faculty of Economics', 19, 259),
+('Faculty of Law', 18, 333)
 ;
 select * from faculty;
 
