@@ -32,7 +32,7 @@
 .wrapper_form {
     width: 300px;
     height: 300px;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     text-align: center;
     border-radius: 8px;
     padding-top: 30px;
@@ -71,7 +71,7 @@
     width: 300px;
     height: 50px;
     margin: 0 auto;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     text-align: center;
     border-radius: 8px;
     padding-top: 15px;
@@ -93,7 +93,7 @@
     font-size: 20px;
     padding: 10px;
     color: white;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     margin: 0 auto 30px;
 }
 
@@ -118,7 +118,7 @@
     margin: 0 auto;
     padding: 10px;
     color: white;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .navigation_buttons ul {
@@ -144,7 +144,7 @@
 }
 
 .reg_form {
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     width: 250px;
     border-radius: 8px;
     margin: 0 auto;
@@ -189,9 +189,9 @@
 .table_order table {
     border-radius: 8px;
     width: 98%;
-    font-size: 15px;
+    font-size: 16px;
     color: white;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     margin: 0 auto 30px;
 }
 
@@ -288,8 +288,8 @@
     color: white;
     font-size: 20px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .pay_button button:hover {
@@ -317,7 +317,7 @@
     width: 500px;
     height: 300px;
     resize: none;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .add_feedback textarea:hover {
@@ -337,8 +337,8 @@
     font-family: 'Caviar', serif;
     font-size: 20px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .prepare_order {
@@ -352,8 +352,8 @@
     font-family: 'Caviar', serif;
     font-size: 20px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .prepare_order ul {
@@ -398,8 +398,8 @@
     font-family: 'Caviar', serif;
     font-size: 20px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.6);
+    background-color: rgba(120, 120, 120, 0.6);
 }
 
 .create_exercise textarea {
@@ -410,7 +410,7 @@
     width: 500px;
     height: 300px;
     resize: none;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .create_exercise textarea:hover {
@@ -432,7 +432,7 @@
 .show_exercise {
     font-size: 20px;
     text-align: center;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     width: 70%;
     margin: 0 auto;
     border-radius: 10px;
@@ -468,9 +468,10 @@
 }
 
 .training_program_description_day {
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     padding: 1%;
-    margin: 1%;
+    margin: 1% 10%;
+    text-align: center;
     border-radius: 10px;
 }
 
@@ -495,8 +496,8 @@
     color: white;
     font-size: 20px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .training_program_client_buttons button:hover {
@@ -523,8 +524,8 @@
     font-family: 'Caviar', serif;
     font-size: 20px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .not_active_button {
@@ -553,7 +554,7 @@
     width: 500px;
     height: 300px;
     resize: none;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .error_text_area {
@@ -585,7 +586,7 @@
 
 .wrapper_content p {
     font-size: 18px;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     border-radius: 10px;
     padding: 5px 0 5px 0;
 }
@@ -638,8 +639,8 @@
     color: white;
     font-size: 15px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .edit_training_program_wrapper_button:hover {
@@ -656,16 +657,19 @@
     font-family: 'Caviar', serif;
     font-size: 15px;
     border-radius: 5px;
-    border-color: rgba(120, 120, 120, 0.7);
-    background-color: rgba(120, 120, 120, 0.7);
+    border-color: rgba(120, 120, 120, 0.9);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .day_wrapper {
-    width: 95%;
+    width: 98%;
     padding: 1%;
-    background-color: rgba(31, 55, 78, 0.41);
+    background-color: rgba(120, 120, 120, 0.9);
+    border-color: rgba(120, 120, 120, 0.9);
     border-radius: 10px;
-    margin: 1%;
+    margin: 0 auto 30px;
+    text-align: left;
+
 }
 
 .add_exercise_wrapper input {
@@ -681,7 +685,7 @@
     width: 500px;
     height: 300px;
     resize: none;
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .diet_wrapper textarea:hover {
@@ -706,8 +710,26 @@
     display: inline-block;
 }
 
+.apply_form {
+    width: 95%;
+    padding: 1%;
+    background-color: rgba(120, 120, 120, 0.9);
+    border-radius: 10px;
+    margin: 2% 10% 2% 10%;
+    text-align: center;
+
+}
+
+.create_application_ball {
+    width: 7%;
+    font-family: 'Caviar', serif;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-right: 3%;
+}
+
 .footer {
-    background-color: rgba(120, 120, 120, 0.7);
+    background-color: rgba(120, 120, 120, 0.9);
     width: 98%;
     color: white;
     border-radius: 10px;

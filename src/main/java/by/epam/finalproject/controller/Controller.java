@@ -4,6 +4,7 @@ import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.command.factory.ActionFactory;
 import by.epam.finalproject.resource.ConfigurationManager;
 import by.epam.finalproject.resource.MessageManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,9 +22,11 @@ public class Controller extends HttpServlet {
 
     HttpSession session;
 
-    @Override
+    private final static Logger LOGGER = Logger.getLogger(Controller.class);
+
+/*    @Override
     public void init() throws ServletException {
-/*        try {
+*//*        try {
             ConnectionPool.getInstance();
             GameWarehouse.getInstance();
             ConnectionTimer timer = ConnectionTimer.getInstance();
@@ -33,8 +36,8 @@ public class Controller extends HttpServlet {
             logger.fatal("Servlet can't begin work due to a internal error", e);
         } catch (IncorrectDataException e) {
             logger.warn("Timer doesn't begin checking connections", e);
-        }*/
-    }
+        }*//*
+    }*/
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,22 +53,28 @@ public class Controller extends HttpServlet {
 
         String page;
 
-/*        session = request.getSession();
-        if(session.isNew()) {
-            session.setAttribute("isAdmin", false);
-        }*/
-
-        // определение команды, пришедшей из JSP
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
-        /*
-         * вызов реализованного метода execute() и передача параметров
-         * классу-обработчику конкретной команды
-         */
-        page = command.execute(request);
+
+        Boolean isRedirect = (Boolean) request.getAttribute("isRedirect");
+
+        try {
+            page = command.execute(request);
+            if (isRedirect) {
+                redirect(page, request, response);
+            } else {
+                forward(page, request, response);
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            forward("/jsp/error/error.jsp", request, response);
+        }
         // метод возвращает страницу ответа
-        // page = null; // поэксперементировать!
-        if (page != null) {
+
+
+
+
+/*        if (page != null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
             dispatcher.forward(request, response);
         } else {
@@ -73,7 +82,18 @@ public class Controller extends HttpServlet {
             page = ConfigurationManager.getProperty("path.page.index");
             request.getSession().setAttribute("nullPage", MessageManager.getProperty(("message.null_page")));
             response.sendRedirect(request.getContextPath() + page);
-        }
+        }*/
+    }
+
+    private void redirect(String page, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(request.getContextPath() + page);
+    }
+
+    private void forward(String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String message = MessageManager.getProperty("Page not found.");
+        request.setAttribute("message", message);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(page);
+        requestDispatcher.forward(request, response);
     }
 
     @Override

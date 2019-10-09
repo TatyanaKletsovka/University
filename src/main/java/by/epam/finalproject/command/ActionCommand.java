@@ -6,6 +6,6 @@ public interface ActionCommand {
 
     String COMMAND_PARAMETER = "command";
 
-    String execute(HttpServletRequest request);
+    String execute(HttpServletRequest request) throws Exception;
 
 }

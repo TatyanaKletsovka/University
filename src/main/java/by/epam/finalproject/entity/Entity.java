@@ -1,7 +1,5 @@
 package by.epam.finalproject.entity;
 
-import com.sun.corba.se.spi.ior.Identifiable;
-
 import java.io.Serializable;
 
 public abstract class Entity implements Serializable {

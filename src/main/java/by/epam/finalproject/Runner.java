@@ -2,10 +2,21 @@ package by.epam.finalproject;
 
 import by.epam.finalproject.dao.FacultyDao;
 import by.epam.finalproject.dao.UserDao;
+import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.entity.Faculty;
+import by.epam.finalproject.entity.ROLE;
 import by.epam.finalproject.entity.User;
+import by.epam.finalproject.exception.DaoException;
+import by.epam.finalproject.filter.UserRoleFilter;
+import by.epam.finalproject.service.ApplicationService;
+import by.epam.finalproject.service.MarkService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Runner {
 
@@ -16,51 +27,92 @@ public class Runner {
 
     public static void main(String[] args) {
 
+        UserDao userDao = new UserDao();
+        User user = userDao.selectUserByLoginAndPassword("Ringo", "root");
+        System.out.println(user);
+        try {
+            boolean isUnique = userDao.checkLoginForUnique("Ringo");
+            System.out.println(isUnique);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+/*        User user2 = userDao.registerUser("egrgeg", "rrgegoot", "grgwgwrwg", "gwgwwrgwg");
+        System.out.println(user2);*/
+
+
 /*        ConnectionCreator creator = new ConnectionCreator();
         LinkedList<Connection> list = creator.createPool();*/
         FacultyDao facultyDAO = new FacultyDao();
-        Map<Integer, Faculty> faculties = facultyDAO.findAll();
-        faculties.values().forEach(System.out::println);
+        List<Faculty> faculties = facultyDAO.findAll();
+        faculties.forEach(System.out::println);
 
-        UserDao userDao = new UserDao();
+        Faculty faculty = facultyDAO.selectEntityById("3");
+        System.out.println(faculty);
+
+/*        UserDao userDao = new UserDao();
         User user = userDao.selectUserByLoginAndPassword("Admin", "root");
-        System.out.println(user);
+        System.out.println(user);*/
 
-        /*        List<Faculty> faculties = new ArrayList<>();
-        try {
-            Statement statement = list.getFirst().createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from faculty");
+/*        boolean isUpdate = userDao.updateUserCertificate("88", "2");
+        System.out.println(isUpdate);
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int places = resultSet.getInt("places");
-                int passingPoints = resultSet.getInt("passing_points");
 
-                faculties.add(new Faculty(id, name, places, passingPoints));
+        MarkService markService = new MarkService();
+        boolean isUpdate3 = markService.isUpdate("2", "1", "99");
+        System.out.println(isUpdate3);*/
+
+        ApplicationService applicationService = new ApplicationService();
+        List<Application> applications = applicationService.findAll();
+
+        applications.forEach(System.out::println);
+
+/*        List<String> list = new ArrayList<>();
+        list.add("/show_all_faculties");
+
+        String string = "/University/controller?command=show_all_faculties";
+        System.out.println(string.endsWith("show_all_faculties"));
+
+        boolean isTrue = checkPath("/University/controller?command=show_all_faculties",
+                list.get(0));
+        System.out.println(isTrue);*/
+
+
+        List<String> userCommands = new ArrayList<>
+                (Arrays.asList("login", "logout", "common_register", "common_change_language",
+                        "show_all_applications", "show_all_faculties",
+                        "go_to_application_page", "create_application", "show_my_applications"));
+        List<String> adminCommands = new ArrayList<>
+                (Arrays.asList("login", "logout", "common_register", "common_change_language",
+                        "show_all_applications", "show_all_faculties",
+                        "show_all_users"));
+
+        ROLE userRole = ROLE.USER;
+
+        List<String> accessCommands = new ArrayList<>();
+        switch (userRole) {
+            case USER: {
+                accessCommands = userCommands;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            case ADMIN: {
+                accessCommands = userCommands;
+            }
         }
 
-        if (faculties.size() > 0) {
-            faculties.forEach(System.out::println);
-        } else {
-            System.out.println("Not found");
-        }*/
-
-/*        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        String parameter = "show_all_applications";
+        for (int i = 0; i < accessCommands.size(); i++) {
+            if (accessCommands.get(i).equals(parameter)) {
+                System.out.println(true);
+                return;
+            }
         }
 
-        try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASS);
-            connection.setAutoCommit(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
+
+    private static boolean checkPath(String path, String pagePattern) {
+        Pattern pattern = Pattern.compile(pagePattern);
+        Matcher matcher = pattern.matcher(path);
+
+        return matcher.matches();
+    }
 }

@@ -1,5 +1,6 @@
 package by.epam.finalproject.dao;
 
+import by.epam.finalproject.builder.FacultyBuilder;
 import by.epam.finalproject.entity.Faculty;
 import by.epam.finalproject.entity.ROLE;
 import by.epam.finalproject.entity.Subject;
@@ -14,16 +15,31 @@ public class FacultyDao extends AbstractDao<Integer, Faculty> {
 
     private static final String SELECT_ALL_FACULTIES = "SELECT * FROM faculty";
     private static final String SELECT_ALL_FACULTIES_JOIN_SUBJECTS =
-            "SELECT faculty.id, faculty.name, places, passing_points, subject.name FROM faculty " +
+            "SELECT faculty.id, faculty.name, places, passing_points, subject.id, subject.name FROM faculty " +
                     "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
                     "JOIN subject ON subjects_in_faculty.subject_id = subject.id";
-    private static final String SELECT_FACULTY_BY_NAME =
+    private static final String SELECT_FACULTY_JOIN_SUBJECTS_BY_NAME =
             "SELECT faculty.id, faculty.name, places, passing_points, subject.name FROM faculty " +
                     "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
                     "JOIN subject ON subjects_in_faculty.subject_id = subject.id WHERE name = ?";
-
+    private static final String SELECT_FACULTY_JOIN_SUBJECTS_BY_ID =
+            "SELECT faculty.id, faculty.name, places, passing_points, subject.id, subject.name FROM faculty " +
+                    "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
+                    "JOIN subject ON subjects_in_faculty.subject_id = subject.id WHERE faculty.id = ?";
     @Override
-    public Map<Integer, Faculty> findAll() {
+    public List<Faculty> findAll() {
+        try {
+            List<Faculty> allFaculties = executeQuery(SELECT_ALL_FACULTIES_JOIN_SUBJECTS, new FacultyBuilder());
+            List<Faculty> currentFaculties = createListCurrentFaculties(allFaculties);
+            return currentFaculties;
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+/*    @Override
+    public List<Faculty> findAll() {
         Map<Integer, Faculty> faculties = new HashMap<>();
         PreparedStatement statement = null;
         try {
@@ -53,13 +69,22 @@ public class FacultyDao extends AbstractDao<Integer, Faculty> {
             closePrepareStatement(statement);
         }
 //        List<Faculty> faculties1 = new ArrayList<>(faculties.values());
-        return faculties;
-    }
+        return new ArrayList<>(faculties.values());
+    }*/
 
-
-
-    @Override
-    public Faculty selectEntityById(Integer id) {
+ //   @Override
+    public Faculty selectEntityById(String id) {
+        try {
+            List<Faculty> faculties = executeQuery(SELECT_FACULTY_JOIN_SUBJECTS_BY_ID, new FacultyBuilder(), id);
+            if (faculties.size() > 0) {
+                List<Faculty> currentFaculties = createListCurrentFaculties(faculties);
+                return currentFaculties.get(0);
+            } else {
+                return null;
+            }
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -106,5 +131,17 @@ public class FacultyDao extends AbstractDao<Integer, Faculty> {
             throw new DaoException(e);
         }*/
         return null;
+    }
+
+    private List<Faculty> createListCurrentFaculties(List<Faculty> allFaculties) {
+        List<Faculty> currentFaculties = new ArrayList<>();
+        for (int i = 0; i < allFaculties.size(); i+= 3) {
+            //        int id = allfaculties.get(i).getId();
+            Faculty faculty = allFaculties.get(i);
+            faculty.addSubject(allFaculties.get(i+1).getSubjects().get(0));
+            faculty.addSubject(allFaculties.get(i+2).getSubjects().get(0));
+            currentFaculties.add(faculty);
+        }
+        return currentFaculties;
     }
 }

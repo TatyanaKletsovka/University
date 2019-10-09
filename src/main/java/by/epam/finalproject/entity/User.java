@@ -1,12 +1,12 @@
 package by.epam.finalproject.entity;
 
-import java.util.Objects;
-
 public class User extends Entity{
 
     private String login;
     private String password;
     private ROLE role;
+    private String firstName;
+    private String lastName;
 
     public User() {
     }
@@ -35,6 +35,22 @@ public class User extends Entity{
         this.role = role;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -50,7 +66,10 @@ public class User extends Entity{
         User user = (User) obj;
         return login.equals(user.login) &&
                 password.equals(user.password) &&
-                role == user.role;
+                role == user.role &&
+                firstName == user.firstName &&
+                lastName == user.lastName
+                ;
     }
 
     @Override
@@ -66,6 +85,8 @@ public class User extends Entity{
                 "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,7 @@
 use university;
 
-insert into faculty (name, places, passingPoints) values
-('Faculty of Biology', 15, 271), 
+insert into `faculty` (`name`, `places`, `passing_points`) values
+('Faculty of Biology', 15, 271),
 ('Faculty of Geography and Geoinformatics', 10, 214),
 ('Faculty of Journalism', 7, 311),
 ('Faculty of History', 14, 254),
@@ -17,23 +17,25 @@ insert into faculty (name, places, passingPoints) values
 ('Faculty of Economics', 19, 259),
 ('Faculty of Law', 18, 333)
 ;
-select * from faculty;
+select * from `faculty`;
+SELECT faculty.id, faculty.name, places, passing_points, subject.name FROM faculty JOIN subjects_in_faculty
+ ON faculty.id = subjects_in_faculty.faculty_id JOIN subject ON subjects_in_faculty.subject_id = subject.id;
 
-insert into subject (name) values
-('maths'), 
-('native_language'), 
-('foreign_language'), 
-('history'), 
-('physics'), 
-('chemistry'),
-('biology'),
-('geography'),
-('literature'),
-('computer_science') 
+insert into `subject` (`name`) values
+('Maths'),
+('Native language'),
+('Foreign language'),
+('History'),
+('Physics'),
+('Chemistry'),
+('Biology'),
+('Geography'),
+('Literature'),
+('Computer science')
 ;
-select * from subject;
+select * from `subject`;
 
-insert into subjects_in_faculty(faculty_id, subject_id) values 
+insert into `subjects_in_faculty`(`faculty_id`, `subject_id`) values
 (1, 7), (1, 2), (1, 1),
 (2, 8), (2, 9), (2, 2),
 (3, 2), (3, 3), (3, 9),
@@ -50,21 +52,26 @@ insert into subjects_in_faculty(faculty_id, subject_id) values
 (14, 1), (14, 2), (14, 3),
 (15, 1), (15, 2), (15, 4)
 ;
-select * from subjects_in_faculty;
-select faculty_id as fac_id, subject_id as sub_id from subjects_in_faculty as sab_fac 
-join faculty as fac on sab_fac.fac_id=fac.id;
+select * from `subjects_in_faculty`;
 
-select faculty.name, subject.name from faculty 
-LEFT OUTER JOIN subjects_in_faculty
-  ON faculty.ID = subjects_in_faculty.faculty_id
-LEFT OUTER JOIN groups
-  ON subject.ID = subjects_in_faculty.faculty_id
+insert into `user` (`login`, `password`, `role`) values
+('Admin', 'root', 'admin')
 ;
+insert into `user` (`login`, `password`, `firstName`, `lastName`, `certificate`) values
+('Ringo', 'root', 'Tanya', 'Kletsovka', '83'),
+('Lisa', 'root', 'Lisa', 'Sokolova', '91'),
+('Alexander', 'root', 'Alexander', 'Pavlov', '64')
+;
+select * from `user`;
+SELECT id, login, password, role FROM user WHERE login = 'Admin' and password = 'root';
 
+insert into `mark` (`user_id`, `subject_id`, `value`) values
+(1, 1, 53), (1, 2, 49), (1, 3, 45),
+(2, 1, 68), (2, 2, 78), (2, 5, 81)
+;
+select * from `mark`;
 
-insert into register (faculty_id, student_id) values (1, 1);
-select * from register;
-
-select * from student;
-select * from mark;
-
+insert into `application` (`faculty_id`, `user_id`) values
+(14, 1), (11, 2)
+;
+select * from `application`;

@@ -1,8 +1,8 @@
 package by.epam.finalproject.command.factory;
 
 import by.epam.finalproject.command.ActionCommand;
-import by.epam.finalproject.command.EmptyCommand;
-import by.epam.finalproject.command.client.CommandType;
+import by.epam.finalproject.command.commonCommand.EmptyCommand;
+import by.epam.finalproject.command.CommandType;
 import by.epam.finalproject.resource.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
