@@ -2,13 +2,11 @@ package by.epam.finalproject.dao;
 
 import by.epam.finalproject.builder.MarkBuilder;
 import by.epam.finalproject.entity.Mark;
-import by.epam.finalproject.entity.User;
 import by.epam.finalproject.exception.DaoException;
 
-import java.sql.ResultSet;
 import java.util.List;
 
-public class MarkDao extends AbstractDao<Integer, Mark> {
+public class MarkDao extends AbstractDao<String, Mark> {
 
     private static final String INSERT_INTO_MARK =
             "INSERT INTO mark (user_id, subject_id, value) values (?, ?, ?)";
@@ -20,65 +18,55 @@ public class MarkDao extends AbstractDao<Integer, Mark> {
     private static final String UPDATE_MARK =
             "UPDATE mark SET value = ? WHERE user_id = ? AND subject_id = ?;";
 
-    public boolean insertIntoMark(String userId, String subjectId, String value) {
-        try {
-            boolean isUpdate = executeUpdate(INSERT_INTO_MARK, userId, subjectId, value);
-            return isUpdate;
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean insertIntoMark(String userId, String subjectId, String value) throws DaoException {
+
+        boolean isUpdate = executeUpdate(INSERT_INTO_MARK, userId, subjectId, value);
+        return isUpdate;
     }
 
-    public Mark findMark(String userId, String subjectId) {
-        try {
-            List<Mark> marks = executeQuery(SELECT_MARK_BY_ID, new MarkBuilder(), userId, subjectId);
-            if (marks.size() != 0) {
-                return marks.get(0);
-            }
-        } catch (DaoException e) {
-            e.printStackTrace();
+    public Mark findMark(String userId, String subjectId) throws DaoException {
+
+        List<Mark> marks = executeQuery(SELECT_MARK_BY_ID, new MarkBuilder(), userId, subjectId);
+        if (marks.size() != 0) {
+            return marks.get(0);
+        } else {
+            return null;
         }
-        return null;
     }
 
-    public boolean updateMark(String value, String userId, String subjectId) {
-        try {
-            boolean isUpdate = executeUpdate(UPDATE_MARK, value, userId, subjectId);
-            return isUpdate;
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean updateMark(String value, String userId, String subjectId) throws DaoException {
+
+        boolean isUpdate = executeUpdate(UPDATE_MARK, value, userId, subjectId);
+        return isUpdate;
     }
 
     @Override
-    public List<Mark> findAll() {
+    public List<Mark> findAll() throws DaoException {
         return null;
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Mark entity) {
-        return false;
-    }
-
-    @Override
-    public boolean create(Mark entity) {
-        return false;
-    }
-
-    @Override
-    public Mark update(Mark entity) {
+    public Mark findById(String id) throws DaoException {
         return null;
     }
 
     @Override
-    protected Mark buildEntity(ResultSet resultSet) throws DaoException {
+    public boolean delete(String id) throws DaoException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Mark entity) throws DaoException {
+        return false;
+    }
+
+    @Override
+    public boolean create(Mark entity) throws DaoException {
+        return false;
+    }
+
+    @Override
+    public Mark update(Mark entity) throws DaoException {
         return null;
     }
 }

@@ -3,30 +3,28 @@ package by.epam.finalproject.command.userCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.entity.User;
+import by.epam.finalproject.exception.DaoException;
 import by.epam.finalproject.service.ApplicationService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import static by.epam.finalproject.command.CommandConstant.*;
+
 public class ShowMyApplications implements ActionCommand {
 
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request) throws DaoException {
 
-        try {
+        HttpSession currentSession = request.getSession();
+        User user = (User) currentSession.getAttribute(USER_ATTRIBUTE);
+        String login = user.getLogin();
 
-            HttpSession currentSession = request.getSession();
-            User user = (User) currentSession.getAttribute("user");
-            String login = user.getLogin();
+        ApplicationService applicationService = new ApplicationService();
+        List<Application> showMyApplications = applicationService.findAllWhereUserLogin(login);
 
-            ApplicationService applicationService = new ApplicationService();
-            List<Application> showMyApplications = applicationService.findAllWhereUserLogin(login);
-
-            currentSession.setAttribute("showMyApplications", showMyApplications);
-            return "/jsp/user/showMyApplications.jsp";
-        } catch (Exception e) {
-            return "/jsp/error/error.jsp";
-        }
+        currentSession.setAttribute(SHOW_MY_APPLICATIONS_ATTRIBUTE, showMyApplications);
+        return SHOW_MY_APPLICATIONS_USER_JSP;
     }
 }

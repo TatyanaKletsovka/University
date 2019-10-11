@@ -10,11 +10,9 @@ import by.epam.finalproject.exception.DaoException;
 import by.epam.finalproject.filter.UserRoleFilter;
 import by.epam.finalproject.service.ApplicationService;
 import by.epam.finalproject.service.MarkService;
+import by.epam.finalproject.utils.comparator.SumComparator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +26,12 @@ public class Runner {
     public static void main(String[] args) {
 
         UserDao userDao = new UserDao();
-        User user = userDao.selectUserByLoginAndPassword("Ringo", "root");
+        User user = null;
+        try {
+            user = userDao.selectUserByLoginAndPassword("Ringo", "root");
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
         System.out.println(user);
         try {
             boolean isUnique = userDao.checkLoginForUnique("Ringo");
@@ -43,10 +46,20 @@ public class Runner {
 /*        ConnectionCreator creator = new ConnectionCreator();
         LinkedList<Connection> list = creator.createPool();*/
         FacultyDao facultyDAO = new FacultyDao();
-        List<Faculty> faculties = facultyDAO.findAll();
+        List<Faculty> faculties = null;
+        try {
+            faculties = facultyDAO.findAll();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
         faculties.forEach(System.out::println);
 
-        Faculty faculty = facultyDAO.selectEntityById("3");
+        Faculty faculty = null;
+        try {
+            faculty = facultyDAO.findById("3");
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
         System.out.println(faculty);
 
 /*        UserDao userDao = new UserDao();
@@ -62,9 +75,19 @@ public class Runner {
         System.out.println(isUpdate3);*/
 
         ApplicationService applicationService = new ApplicationService();
-        List<Application> applications = applicationService.findAll();
+        List<Application> applications = null;
+        try {
+            applications = applicationService.findAll();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
 
         applications.forEach(System.out::println);
+
+        applications.sort(new SumComparator());
+        for (Application a : applications) {
+            System.out.println(a);
+        }
 
 /*        List<String> list = new ArrayList<>();
         list.add("/show_all_faculties");
@@ -106,7 +129,10 @@ public class Runner {
             }
         }
 
+
+
     }
+
 
 
     private static boolean checkPath(String path, String pagePattern) {

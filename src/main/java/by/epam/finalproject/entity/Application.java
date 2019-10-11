@@ -12,6 +12,11 @@ public class Application extends Entity{
     public Application() {
     }
 
+    public Application(Faculty faculty, Student student) {
+        this.faculty = faculty;
+        this.student = student;
+    }
+
     public Faculty getFaculty() {
         return faculty;
     }

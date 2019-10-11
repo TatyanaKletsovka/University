@@ -8,6 +8,10 @@ public class Mark extends Entity{
     public Mark() {
     }
 
+    public Mark(int value) {
+        this.value = value;
+    }
+
     public Mark(Subject subject, int value) {
         this.subject = subject;
         this.value = value;

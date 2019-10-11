@@ -17,9 +17,6 @@ insert into `faculty` (`name`, `places`, `passing_points`) values
 ('Faculty of Economics', 19, 259),
 ('Faculty of Law', 18, 333)
 ;
-select * from `faculty`;
-SELECT faculty.id, faculty.name, places, passing_points, subject.name FROM faculty JOIN subjects_in_faculty
- ON faculty.id = subjects_in_faculty.faculty_id JOIN subject ON subjects_in_faculty.subject_id = subject.id;
 
 insert into `subject` (`name`) values
 ('Maths'),
@@ -33,7 +30,6 @@ insert into `subject` (`name`) values
 ('Literature'),
 ('Computer science')
 ;
-select * from `subject`;
 
 insert into `subjects_in_faculty`(`faculty_id`, `subject_id`) values
 (1, 7), (1, 2), (1, 1),
@@ -52,26 +48,23 @@ insert into `subjects_in_faculty`(`faculty_id`, `subject_id`) values
 (14, 1), (14, 2), (14, 3),
 (15, 1), (15, 2), (15, 4)
 ;
-select * from `subjects_in_faculty`;
 
 insert into `user` (`login`, `password`, `role`) values
 ('Admin', 'root', 'admin')
 ;
+
 insert into `user` (`login`, `password`, `firstName`, `lastName`, `certificate`) values
 ('Ringo', 'root', 'Tanya', 'Kletsovka', '83'),
 ('Lisa', 'root', 'Lisa', 'Sokolova', '91'),
 ('Alexander', 'root', 'Alexander', 'Pavlov', '64')
 ;
-select * from `user`;
-SELECT id, login, password, role FROM user WHERE login = 'Admin' and password = 'root';
 
 insert into `mark` (`user_id`, `subject_id`, `value`) values
-(1, 1, 53), (1, 2, 49), (1, 3, 45),
-(2, 1, 68), (2, 2, 78), (2, 5, 81)
+(2, 1, 68), (2, 2, 78), (2, 5, 81),
+(3, 2, 53), (3, 6, 49), (3, 7, 45),
+(4, 2, 76), (4, 4, 52), (4, 9, 64)
 ;
-select * from `mark`;
 
 insert into `application` (`faculty_id`, `user_id`) values
-(14, 1), (11, 2)
+(11, 2), (13, 3), (9, 4), (5, 2)
 ;
-select * from `application`;

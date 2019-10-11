@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserService {
 
-    public User checkLoginAndPassword(String login, String password) {
+    public User checkLoginAndPassword(String login, String password) throws DaoException{
         UserDao userDao = new UserDao();
         return userDao.selectUserByLoginAndPassword(login, password);
     }
@@ -18,17 +18,17 @@ public class UserService {
         return userDao.checkLoginForUnique(login);
     }
 
-    public User register(String login, String password, String firstName, String lastName) {
+    public User register(String login, String password, String firstName, String lastName) throws DaoException{
         UserDao userDao = new UserDao();
         return userDao.registerUser(login, password, firstName, lastName);
     }
 
-    public boolean isUpdateCertificate(String certificate, String id) {
+    public boolean isUpdateCertificate(String certificate, String id) throws DaoException{
         UserDao userDao = new UserDao();
         return userDao.updateUserCertificate(certificate, id);
     }
 
-    public List<User> findAll() {
+    public List<User> findAll() throws DaoException{
         UserDao userDao = new UserDao();
         return userDao.findAll();
     }

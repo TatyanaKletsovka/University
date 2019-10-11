@@ -52,10 +52,10 @@
                    <td> ${application.status}</td>
                    <td> ${application.dateTime}</td>
                    <td class="button">
-                   <form name="button" method="POST" action="controller">
-                   <input type="hidden" name="command" value="delete_application" />
-                   <input type="hidden" class="log_input" type="text" name="applicationId" value="${application.id}"/>
-                   <input type="submit" value="Delete"/>
+                       <form name="button" method="POST" action="controller">
+                       <input type="hidden" name="command" value="delete_application" />
+                       <input type="hidden" class="log_input" type="text" name="applicationId" value="${application.id}"/>
+                       <input type="submit" value="Delete"/>
                    </td>
 
        </tr>

@@ -76,8 +76,6 @@ public class ConnectionCreator {
 
         try {
             Connection connection = DriverManager.getConnection(connectionUrlValue, properties);
-   //         connection.setAutoCommit(false);
-
             System.out.println("Connection was created successful.");
             return connection;
         } catch (SQLException exception) {

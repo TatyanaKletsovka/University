@@ -8,7 +8,7 @@ var passwordRegEx = /\d\W/;
 var punct = /[.,!?()\\|\[\]`@$^*-+=:;№#"'_\s></%&*]+/;
 var digit = /[0-9]+/;
 
-var minLoginLength = 5;
+var minLoginLength = 4;
 var minPasswordLength = 4;
 var notFoundIndex = -1;
 

@@ -2,9 +2,9 @@ package by.epam.finalproject.command.commonCommand;
 
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.User;
+import by.epam.finalproject.exception.DaoException;
 import by.epam.finalproject.resource.MessageManager;
 import by.epam.finalproject.service.UserService;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +17,7 @@ public class LoginCommand implements ActionCommand {
     private final static Logger LOGGER = Logger.getLogger(LoginCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request) throws Exception{
-
-        HttpSession currentSession = request.getSession();
+    public String execute(HttpServletRequest request) throws DaoException {
 
         String login = request.getParameter(LOGIN_PARAMETER);
         String password = request.getParameter(PASSWORD_PARAMETER);
@@ -29,14 +27,14 @@ public class LoginCommand implements ActionCommand {
 
         if (user == null) {
             LOGGER.warn("User was not authorised.");
-            request.setAttribute(ERROR_LOGIN_PASS_MESSAGE_ATTRIBUTE,
-                    MessageManager.getProperty(ERROR_LOGIN_PASS_MESSAGE_PROPERTY));
+            request.setAttribute(ERROR_LOGIN_MESSAGE_ATTRIBUTE, MessageManager.getProperty(ERROR_LOGIN_MESSAGE_PROPERTY));
             return LOGIN_JSP;
         }
         LOGGER.info("User " + user.getLogin() + " was authorised.");
 
+        HttpSession currentSession = request.getSession();
         currentSession.setAttribute(USER_ATTRIBUTE, user);
-        currentSession.setAttribute("isRedirect", false);
+        currentSession.setAttribute(IS_REDIRECT_ATTRIBUTE, false);
 
         return MAIN_JSP;
     }

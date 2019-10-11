@@ -18,26 +18,8 @@ import java.io.IOException;
 @WebServlet("/by/epam/finalproject/controller")
 public class Controller extends HttpServlet {
 
-    private static final long TIME = 3600;
-
     HttpSession session;
-
     private final static Logger LOGGER = Logger.getLogger(Controller.class);
-
-/*    @Override
-    public void init() throws ServletException {
-*//*        try {
-            ConnectionPool.getInstance();
-            GameWarehouse.getInstance();
-            ConnectionTimer timer = ConnectionTimer.getInstance();
-            TimerTask timerTask = new ConnectionTimerTask();
-            timer.schedule(timerTask, TIME, TIME);
-        } catch (ConnectionException e) {
-            logger.fatal("Servlet can't begin work due to a internal error", e);
-        } catch (IncorrectDataException e) {
-            logger.warn("Timer doesn't begin checking connections", e);
-        }*//*
-    }*/
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,6 +37,7 @@ public class Controller extends HttpServlet {
 
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
+        LOGGER.info("Command = " + command);
 
         Boolean isRedirect = (Boolean) request.getAttribute("isRedirect");
 
@@ -65,6 +48,9 @@ public class Controller extends HttpServlet {
             } else {
                 forward(page, request, response);
             }
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("wrongAction", MessageManager.getProperty("message.wrong_action"));
+            forward("/jsp/error/error.jsp", request, response);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             forward("/jsp/error/error.jsp", request, response);

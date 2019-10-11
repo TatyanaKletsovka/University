@@ -1,11 +1,11 @@
 package by.epam.finalproject.command;
 
+import by.epam.finalproject.exception.DaoException;
+
 import javax.servlet.http.HttpServletRequest;
 
 public interface ActionCommand {
 
-    String COMMAND_PARAMETER = "command";
-
-    String execute(HttpServletRequest request) throws Exception;
+    String execute(HttpServletRequest request) throws DaoException;
 
 }

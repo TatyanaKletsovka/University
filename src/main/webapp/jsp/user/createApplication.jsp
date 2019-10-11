@@ -46,7 +46,7 @@
          </c:forEach>
         <p>
             <label>Certificate
-                <input id="certificate_id" class="create_exercise_name" type="text" name="Certificate" value="" onkeyup="checkCertificate();"/>
+                <input id="certificate_id" class="create_exercise_name" type="text" name="certificate" value="" onkeyup="checkCertificate();"/>
             </label>
         </p>
 

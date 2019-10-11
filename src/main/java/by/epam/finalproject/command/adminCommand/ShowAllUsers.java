@@ -1,39 +1,28 @@
 package by.epam.finalproject.command.adminCommand;
 
 import by.epam.finalproject.command.ActionCommand;
-import by.epam.finalproject.entity.Faculty;
 import by.epam.finalproject.entity.User;
-import by.epam.finalproject.service.FacultyService;
+import by.epam.finalproject.exception.DaoException;
 import by.epam.finalproject.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_USERS_ADMIN_JSP;
+import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_USERS_ATTRIBUTE;
 
 public class ShowAllUsers implements ActionCommand {
 
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request) throws DaoException {
 
-        try {
+        UserService userService = new UserService();
+        List<User> showAllUsers = userService.findAll();
 
-            UserService userService = new UserService();
-        //    Map<Integer, User> users = userService.findAll();   //(currentOffSet, MAX_RECORDS_PER_PAGE_COUNT);
-            //   Set<Map.Entry<List<User>, Integer>> entries = clients.entrySet();
+        HttpSession currentSession = request.getSession();
+        currentSession.setAttribute(SHOW_ALL_USERS_ATTRIBUTE, showAllUsers);
 
-            List<User> showAllUsers = userService.findAll();
-
-
-            //      int numberOfPages = (int) Math.ceil(numberOfRecords * 1.0 / MAX_RECORDS_PER_PAGE_COUNT);
-
-            HttpSession currentSession = request.getSession();
-
-            currentSession.setAttribute("showAllUsers", showAllUsers);
-            return "/jsp/admin/showAllUsers.jsp";
-        } catch (Exception e) {
-            return "/jsp/error/error.jsp";
-        }
+        return SHOW_ALL_USERS_ADMIN_JSP;
     }
 }

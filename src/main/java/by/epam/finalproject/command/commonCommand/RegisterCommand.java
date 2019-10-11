@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static by.epam.finalproject.command.CommandConstant.*;
+
 public class RegisterCommand implements ActionCommand {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterCommand.class);
@@ -19,39 +21,37 @@ public class RegisterCommand implements ActionCommand {
     public String execute(HttpServletRequest request) throws DaoException{
 
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String firstName = request.getParameter("first_name");
-        String lastName = request.getParameter("last_name");
+        String login = request.getParameter(LOGIN_PARAMETER);
+        String password = request.getParameter(PASSWORD_PARAMETER);
+        String firstName = request.getParameter(FIRST_NAME);
+        String lastName = request.getParameter(LAST_NAME);
 
         UserService userService = new UserService();
         boolean isLoginUnique = userService.checkUserLoginForUnique(login);
         if (!isLoginUnique) {
-            request.setAttribute("errorUniqueLoginMessage",
-                    MessageManager.getProperty("message.not_unique_login_error"));
-            return "/jsp/common/register.jsp";
+            LOGGER.warn("Login was not unique.");
+            request.setAttribute(ERROR_UNIQUE_LOGIN_MESSAGE_ATTRIBUTE,
+                    MessageManager.getProperty(ERROR_UNIQUE_LOGIN_MESSAGE_PROPERTY));
+            return REGISTER_JSP;
         }
 
         RegisterValidator validator = new RegisterValidator();
         boolean isUserValid = validator.checkData(login, password, firstName, lastName);
         if (!isUserValid) {
-            return "/jsp/common/register.jsp";
+            LOGGER.warn("User data is not valid.");
+            return REGISTER_JSP;
         }
 
         User user = userService.register(login, password, firstName, lastName);
-        if (user != null) {
-        }else {
-            return "/index.jsp";
+        if (user == null) {
+            return REGISTER_JSP;
         }
-//           if (!isOperationSuccessful) {
-//             return new Page(Page.REGISTER_PAGE_PATH, false, REGISTRATION_FAILED_MESSAGE_KEY);
-//           }
 
         HttpSession currentSession = request.getSession();
-        currentSession.setAttribute("user", user);
+        currentSession.setAttribute(USER_ATTRIBUTE, user);
+        currentSession.setAttribute(IS_REDIRECT_ATTRIBUTE, false);
 
-        return "/jsp/common/main.jsp";
-
+        return MAIN_JSP;
 
     }
 }

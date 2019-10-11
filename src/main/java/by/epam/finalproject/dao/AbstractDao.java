@@ -11,8 +11,6 @@ import java.util.Map;
 
 public abstract class AbstractDao<K, T extends Entity> {
 
-    public static final String ID_COLUMN = "id";
-
     private Connection connection;
     protected ConnectionManager connectionManager;
 
@@ -50,20 +48,21 @@ public abstract class AbstractDao<K, T extends Entity> {
             }
             if (statement.executeUpdate() > 0) {
                 return true;
-            } else return false;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             throw new DaoException(e);
         }
     }
 
-    public abstract List<T> findAll();
-//    public abstract T selectEntityById(K id);
-    public abstract boolean delete(K id);
-    public abstract boolean delete(T entity);
-    public abstract boolean create(T entity);
-    public abstract T update(T entity);
-    protected abstract T buildEntity(ResultSet resultSet) throws DaoException;
+    public abstract List<T> findAll() throws DaoException;
+    public abstract T findById(K id) throws DaoException;
+    public abstract boolean delete(K id) throws DaoException;
+    public abstract boolean delete(T entity) throws DaoException;
+    public abstract boolean create(T entity) throws DaoException;
+    public abstract T update(T entity) throws DaoException;
 
     // Возвращения экземпляра Connection в пул соединений
     public void returnConnectionInPool() {
@@ -93,27 +92,6 @@ public abstract class AbstractDao<K, T extends Entity> {
             }
         }
     }
-
-
-/*    public void close(Statement st) {
-        try {
-            if (st != null) {
-                st.close();
-            }
-        } catch (SQLException e) {
-            // лог о невозможности закрытия Statement
-        }
-    }
-
-    public void close(Connection connection) {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            // генерация исключения, т.к. нарушается работа пула
-        }
-    }*/
 
 
 }

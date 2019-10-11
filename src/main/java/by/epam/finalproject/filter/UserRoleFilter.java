@@ -18,13 +18,8 @@ import java.util.List;
 @WebFilter(urlPatterns = { "/controller" }, servletNames = { "Controller" })
 public class UserRoleFilter implements Filter {
 
+    private final static Logger LOGGER = Logger.getLogger(UserRoleFilter.class);
 
-
-    private static final String MAIN_PAGE_PARAMETER = "MAIN_PAGE";
-
-
-
-    private String redirectPage;
     private List<String> userCommands;
     private List<String> adminCommands;
 
@@ -36,7 +31,6 @@ public class UserRoleFilter implements Filter {
      */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        redirectPage = filterConfig.getInitParameter(MAIN_PAGE_PARAMETER);
         userCommands = new ArrayList<>
                 (Arrays.asList("login", "logout", "common_register",
                 "show_all_applications", "show_all_faculties",
@@ -44,7 +38,7 @@ public class UserRoleFilter implements Filter {
         adminCommands = new ArrayList<>
                 (Arrays.asList("login", "logout", "common_register",
                         "show_all_applications", "show_all_faculties",
-                        "show_all_users"));
+                        "show_all_users", "process_applications"));
     }
 
     /**
@@ -88,13 +82,10 @@ public class UserRoleFilter implements Filter {
                 }
             }
         }
-
-
     }
 
     @Override
     public void destroy() {
-
     }
 
     private List<String> getListAccessCommands(ROLE userRole) {
@@ -121,5 +112,4 @@ public class UserRoleFilter implements Filter {
         }
         return false;
     }
-
 }

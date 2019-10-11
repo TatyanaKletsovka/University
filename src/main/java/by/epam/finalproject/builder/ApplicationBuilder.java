@@ -9,13 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 public class ApplicationBuilder implements Builder<Application> {
 
-    private static final String SELECT_ALL_APPLICATIONS_JOIN_FACULTY_USER_MARK =
-            "SELECT application.id, faculty.name, places, passing_points, user.login, user.firstName, user.lastName, " +
-                    "user.certificate, mark.value, status, date_of_register FROM application " +
-                    "JOIN faculty ON application.faculty_id = faculty.id " +
-                    "JOIN user ON application.user_id = user.id " +
-                    "JOIN mark ON mark.user_id = user.id";
-
     @Override
     public Application build(ResultSet resultSet) throws SQLException {
         Application application = new Application();
@@ -25,6 +18,10 @@ public class ApplicationBuilder implements Builder<Application> {
 
 
         Faculty faculty = new Faculty();
+
+        int facultyId = resultSet.getInt("faculty.id");
+        faculty.setId(facultyId);
+
         String facultyName = resultSet.getString("faculty.name");
         faculty.setName(facultyName);
 

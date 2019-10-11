@@ -28,7 +28,7 @@
             <input type="hidden" name="command" value="login" />
             <p><label>${pageScope.enter_login}<input class="log_input" type="text" name="login" value=""/></label></p>
             <p><label>${pageScope.enter_password}<input class="log_input" type="password" name="password" value=""/></label></p>
-            ${errorLoginPassMessage}
+            ${errorLoginMessage}
             <br/>
             ${wrongAction}
             <br/>

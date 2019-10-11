@@ -2,8 +2,6 @@ create database `university`;
 use `university`;
 
 drop database `university`;
-drop table `user`;
-select * from `faculty`;
 
 create table `faculty` (
 `id` int primary key auto_increment not null,
@@ -50,8 +48,8 @@ create table `application` (
 `user_id` int not null,
 `status` enum(
 	'under_consideration',
-    'not_accepted',
-    'accepted') default 'under_consideration',
+    'accepted',
+    'rejected') default 'under_consideration',
 `date_of_register` datetime default now(),
 foreign key(faculty_id) references `faculty`(id),
 foreign key(user_id) references `user`(id)
@@ -62,4 +60,5 @@ create index `name` on `subject` (name);
 create index `subject` on `subjects_in_faculty` (faculty_id, subject_id);
 create index `login` on `user` (login);
 create index `mark` on `mark` (user_id, subject_id);
-create index `application` on `application` (faculty_id, user_id);
+create index `application` on `application` (id, faculty_id, user_id);
+

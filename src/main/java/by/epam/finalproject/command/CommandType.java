@@ -60,6 +60,11 @@ public enum CommandType {
         {
             this.command = new ShowAllUsers();
         }
+    },
+    PROCESS_APPLICATIONS {
+        {
+            this.command = new ProcessApplications();
+        }
     };
     ActionCommand command;
     public ActionCommand getCurrentCommand() {

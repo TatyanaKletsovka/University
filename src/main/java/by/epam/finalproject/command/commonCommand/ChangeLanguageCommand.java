@@ -6,9 +6,9 @@ import by.epam.finalproject.resource.MessageManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import static by.epam.finalproject.command.CommandConstant.LOCALE_PARAMETER;
+import static by.epam.finalproject.command.CommandConstant.MAIN_JSP;
 import static by.epam.finalproject.resource.MessageManager.DEFAULT_LOCALE;
 
 public class ChangeLanguageCommand implements ActionCommand {
@@ -28,7 +28,7 @@ public class ChangeLanguageCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
 
-        String localeValue = request.getParameter("locale");
+        String localeValue = request.getParameter(LOCALE_PARAMETER);
         Locale locale;
         switch (localeValue) {
             case RU_LANGUAGE: {
@@ -47,45 +47,6 @@ public class ChangeLanguageCommand implements ActionCommand {
         Config.set(request.getSession(), Config.FMT_LOCALE, locale);
         MessageManager.changeLocale(locale);
 
-//        String currentPage = request.getServletPath();
-//        boolean isCommonJsp = (checkPath(currentPage, ".*/jsp/common/.*.jsp*")
-//                || checkPath(currentPage, ".*/.*.jsp"));
-//        if (isCommonJsp || stringEndsWith(currentPage, "login.jsp")
-//                || stringEndsWith(currentPage, "register.jsp")) {
-//            return "/jsp/common/login.jsp";
-//
-//        }
-
-
-
-        return "/jsp/common/main.jsp";
-
-      //  String command = request.getParameter("command");
-      //  return getUrl(command);
-    }
-
-    private String getUrl(String command) {
-        switch (command) {
-            case "show_all_faculties": {
-                return "/jsp/general/showAllFaculties.jsp";
-            }
-            case "show_my_applications": {
-                return "/jsp/user/showMyApplications.jsp";
-            }
-            default: {
-                return "/jsp/common/login.jsp";
-            }
-        }
-    }
-
-    private boolean checkPath(String path, String pagePattern) {
-        Pattern pattern = Pattern.compile(pagePattern);
-        Matcher matcher = pattern.matcher(path);
-
-        return matcher.matches();
-    }
-
-    private boolean stringEndsWith(String path, String pagePattern) {
-        return path.endsWith(pagePattern);
+        return MAIN_JSP;
     }
 }

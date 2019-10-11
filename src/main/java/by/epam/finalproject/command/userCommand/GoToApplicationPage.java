@@ -2,30 +2,28 @@ package by.epam.finalproject.command.userCommand;
 
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.Faculty;
+import by.epam.finalproject.exception.DaoException;
 import by.epam.finalproject.service.FacultyService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+
+import static by.epam.finalproject.command.CommandConstant.*;
 
 public class GoToApplicationPage implements ActionCommand {
 
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request) throws DaoException {
 
-        try {
+        String facultyId = request.getParameter(FACULTY_ID_PARAMETER);
 
-            String facultyId = request.getParameter("facultyId");
-            FacultyService facultyService = new FacultyService();
-            Faculty faculty = facultyService.findFaculty(facultyId);
+        FacultyService facultyService = new FacultyService();
+        Faculty faculty = facultyService.findFaculty(facultyId);
 
+        HttpSession currentSession = request.getSession();
+        currentSession.setAttribute(FACULTY_ATTRIBUTE, faculty);
+        currentSession.removeAttribute(APPLICATION_CREATED_ATTRIBUTE);
 
-            HttpSession currentSession = request.getSession();
-
-            currentSession.setAttribute("faculty", faculty);
-            return "/jsp/user/createApplication.jsp";
-        } catch (Exception e) {
-            return "/jsp/error/error.jsp";
-        }
+        return CREATE_APPLICATION_USER_JSP;
     }
 }

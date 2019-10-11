@@ -11,6 +11,11 @@ public class Student extends User {
     public Student() {
     }
 
+    public Student(int certificate, List<Mark> marks) {
+        this.certificate = certificate;
+        this.marks = marks;
+    }
+
     public int getCertificate() {
         return certificate;
     }

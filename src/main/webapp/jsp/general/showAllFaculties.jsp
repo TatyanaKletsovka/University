@@ -54,22 +54,22 @@
                     </c:if>
                     <c:if test="${sessionScope.user.role == 'USER'}">
                         <td class="button">
-                        <form name="button" method="POST" action="controller">
-                        <input type="hidden" name="command" value="go_to_application_page" />
-                        <input type="hidden" class="log_input" type="text" name="facultyId" value="${faculty.id}"/>
-                        <input type="submit" value="Apply"/>
+                            <form name="button" method="POST" action="controller">
+                            <input type="hidden" name="command" value="go_to_application_page" />
+                            <input type="hidden" class="log_input" type="text" name="facultyId" value="${faculty.id}"/>
+                            <input type="submit" value="Apply"/>
                         </form>
 
                         </td>
                     </c:if>
        </tr>
          </c:forEach>
-
+     <c:if test="${sessionScope.user.role == 'ADMIN'}">
+         <th class="button" colspan="2"><button>Add new faculty</button></th>
+     </c:if>
 </table>
 
-     <c:if test="${sessionScope.user.role == 'ADMIN'}">
-         <td class="button"><button>Add new faculty</button></td>
-     </c:if>
+
 </div>
 </body>
 
