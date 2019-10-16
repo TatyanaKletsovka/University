@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.commonCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import org.apache.log4j.Logger;
 
@@ -9,9 +10,9 @@ import javax.servlet.http.HttpSession;
 import static by.epam.finalproject.command.CommandConstant.MAIN_JSP;
 import static by.epam.finalproject.command.CommandConstant.USER_ATTRIBUTE;
 
-public class LogoutCommand implements ActionCommand {
+public class Logout extends AbstractCommand implements ActionCommand {
 
-    private static final Logger LOGGER = Logger.getLogger(LogoutCommand.class);
+    private static final Logger LOGGER = Logger.getLogger(Logout.class);
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -19,6 +20,8 @@ public class LogoutCommand implements ActionCommand {
         HttpSession currentSession = request.getSession();
 
         LOGGER.info("User: " + currentSession.getAttribute(USER_ATTRIBUTE) + " log out.");
+
+        proxyConnection.close();
 
         currentSession.invalidate();
 

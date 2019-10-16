@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.commonCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.User;
 import by.epam.finalproject.exception.DaoException;
@@ -12,9 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class LoginCommand implements ActionCommand {
+public class Login extends AbstractCommand implements ActionCommand {
 
-    private final static Logger LOGGER = Logger.getLogger(LoginCommand.class);
+    private final static Logger LOGGER = Logger.getLogger(Login.class);
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
@@ -22,7 +23,7 @@ public class LoginCommand implements ActionCommand {
         String login = request.getParameter(LOGIN_PARAMETER);
         String password = request.getParameter(PASSWORD_PARAMETER);
 
-        UserService userService = new UserService();
+        UserService userService = new UserService(proxyConnection.getConnection());
         User user = userService.checkLoginAndPassword(login, password);
 
         if (user == null) {
@@ -34,7 +35,6 @@ public class LoginCommand implements ActionCommand {
 
         HttpSession currentSession = request.getSession();
         currentSession.setAttribute(USER_ATTRIBUTE, user);
-        currentSession.setAttribute(IS_REDIRECT_ATTRIBUTE, false);
 
         return MAIN_JSP;
     }

@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.userCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.*;
 import by.epam.finalproject.exception.DaoException;
@@ -16,7 +17,7 @@ import java.util.List;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class CreateApplication implements ActionCommand {
+public class CreateApplication extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
@@ -29,7 +30,7 @@ public class CreateApplication implements ActionCommand {
 
         String facultyId = request.getParameter(FACULTY_ID_PARAMETER);
 
-        FacultyService facultyService = new FacultyService();
+        FacultyService facultyService = new FacultyService(proxyConnection.getConnection());
         Faculty faculty = facultyService.findFaculty(facultyId);
 
         List<Mark> marks = new ArrayList<>();
@@ -54,21 +55,20 @@ public class CreateApplication implements ActionCommand {
             return SHOW_ALL_FACULTIES_GENERAL_JSP;
         }
 
-        UserService userService = new UserService();
+        UserService userService = new UserService(proxyConnection.getConnection());
         String userId = String.valueOf(user.getId());
 
         boolean isUpdateCertificate = userService.isUpdateCertificate(certificate, userId);
 
-        MarkService markService = new MarkService();
+        MarkService markService = new MarkService(proxyConnection.getConnection());
         for (int i = 0; i < marks.size(); i++) {
             markService.isUpdate(userId, String.valueOf(marks.get(i).getSubject().getId()),
                     String.valueOf(marks.get(i).getValue()));
         }
 
-        ApplicationService applicationService = new ApplicationService();
+        ApplicationService applicationService = new ApplicationService(proxyConnection.getConnection());
         boolean isUpdateApplication = applicationService.createApplication(facultyId, userId);
 
-        currentSession.setAttribute(IS_REDIRECT_ATTRIBUTE, true);
         currentSession.setAttribute(APPLICATION_CREATED_ATTRIBUTE, true);
 
         if (isUpdateCertificate && isUpdateApplication) {

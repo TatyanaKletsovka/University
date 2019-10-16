@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.commonCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.User;
 import by.epam.finalproject.exception.DaoException;
@@ -13,9 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class RegisterCommand implements ActionCommand {
+public class Register extends AbstractCommand implements ActionCommand {
 
-    private static final Logger LOGGER = Logger.getLogger(RegisterCommand.class);
+    private static final Logger LOGGER = Logger.getLogger(Register.class);
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException{
@@ -26,7 +27,7 @@ public class RegisterCommand implements ActionCommand {
         String firstName = request.getParameter(FIRST_NAME);
         String lastName = request.getParameter(LAST_NAME);
 
-        UserService userService = new UserService();
+        UserService userService = new UserService(proxyConnection.getConnection());
         boolean isLoginUnique = userService.checkUserLoginForUnique(login);
         if (!isLoginUnique) {
             LOGGER.warn("Login was not unique.");
@@ -49,7 +50,6 @@ public class RegisterCommand implements ActionCommand {
 
         HttpSession currentSession = request.getSession();
         currentSession.setAttribute(USER_ATTRIBUTE, user);
-        currentSession.setAttribute(IS_REDIRECT_ATTRIBUTE, false);
 
         return MAIN_JSP;
 

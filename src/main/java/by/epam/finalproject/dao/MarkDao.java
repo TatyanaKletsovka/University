@@ -4,6 +4,7 @@ import by.epam.finalproject.builder.MarkBuilder;
 import by.epam.finalproject.entity.Mark;
 import by.epam.finalproject.exception.DaoException;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class MarkDao extends AbstractDao<String, Mark> {
@@ -17,6 +18,10 @@ public class MarkDao extends AbstractDao<String, Mark> {
             "WHERE user.id = ? and subject.id = ?";
     private static final String UPDATE_MARK =
             "UPDATE mark SET value = ? WHERE user_id = ? AND subject_id = ?;";
+
+    public MarkDao(Connection connection) {
+        super(connection);
+    }
 
     public boolean insertIntoMark(String userId, String subjectId, String value) throws DaoException {
 
@@ -53,20 +58,5 @@ public class MarkDao extends AbstractDao<String, Mark> {
     @Override
     public boolean delete(String id) throws DaoException {
         return false;
-    }
-
-    @Override
-    public boolean delete(Mark entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public boolean create(Mark entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public Mark update(Mark entity) throws DaoException {
-        return null;
     }
 }

@@ -8,22 +8,22 @@ import by.epam.finalproject.command.userCommand.*;
 public enum CommandType {
     LOGIN {
         {
-            this.command = new LoginCommand();
+            this.command = new Login();
         }
     },
     LOGOUT {
         {
-            this.command = new LogoutCommand();
+            this.command = new Logout();
         }
     },
     COMMON_REGISTER {
         {
-            this.command = new RegisterCommand();
+            this.command = new Register();
         }
     },
     COMMON_CHANGE_LANGUAGE {
         {
-            this.command = new ChangeLanguageCommand();
+            this.command = new ChangeLanguage();
         }
     },
     SHOW_ALL_APPLICATIONS {

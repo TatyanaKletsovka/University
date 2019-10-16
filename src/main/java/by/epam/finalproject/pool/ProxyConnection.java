@@ -1,22 +1,19 @@
-package by.epam.finalproject.dao;
+package by.epam.finalproject.pool;
 
-import by.epam.finalproject.pool.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionManager implements AutoCloseable {
+public class ProxyConnection implements AutoCloseable {
 
-    private static final Logger LOGGER = Logger.getLogger(ConnectionManager.class);
+    private static final Logger LOGGER = Logger.getLogger(ProxyConnection.class);
     private final Connection connection;
-//    private ConnectionPool connectionPool;
 
     /**
-     * Instantiates a new ConnectionManager.
+     * Instantiates a new ProxyConnection.
      */
-    public ConnectionManager() {
-        //       connectionPool = ConnectionPool.getInstance();
+    public ProxyConnection() {
         connection = ConnectionPool.getInstance().getConnection();
     }
 

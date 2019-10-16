@@ -6,28 +6,28 @@
 
 <fmt:bundle basename="page_content">
     <fmt:message key="menu.title" var="title"/>
-        <fmt:message key="menu.title" var="title"/>
-        <fmt:message key="menu.hello" var="hello"/>
-        <fmt:message key="menu.hello_guest" var="hello_guest"/>
-        <fmt:message key="menu.logout" var="logout"/>
-        <fmt:message key="menu.register" var="register"/>
+    <fmt:message key="menu.english" var="english"/>
+    <fmt:message key="menu.russian" var="russian"/>
+    <fmt:message key="menu.hello" var="hello"/>
+    <fmt:message key="menu.hello_guest" var="hello_guest"/>
+    <fmt:message key="menu.login" var="login"/>
+    <fmt:message key="menu.register" var="register"/>
+    <fmt:message key="menu.logout" var="logout"/>
 </fmt:bundle>
 
 <html>
-    <head>
-        <title>${pageScope.title}</title>
-    </head>
-
     <body>
         <header class="header">
             <h1 class="top">${pageScope.title}</h1>
             <div class="change_level">
                 <ul>
                     <li>
-                        <a href="${pageContext.request.contextPath}/controller?command=common_change_language&locale=ru">RU</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=common_change_language&locale=ru">
+                        ${pageScope.russian}</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/controller?command=common_change_language&locale=en">EN</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=common_change_language&locale=en">
+                        ${pageScope.english}</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                     <c:when test="${sessionScope.user == null}">
                         <span class="hello_text">${pageScope.hello_guest}</span>
                         <a class="logout_a"
-                           href="${pageContext.request.contextPath}/jsp/common/login.jsp">Login</a>
+                           href="${pageContext.request.contextPath}/jsp/common/login.jsp">${pageScope.login}</a>
                         <a class="register_login_a"
                            href="${pageContext.request.contextPath}/jsp/common/register.jsp">${pageScope.register}</a>
                     </c:when>
@@ -48,7 +48,6 @@
                            href="${pageContext.request.contextPath}/controller?command=logout">${pageScope.logout}</a>
                     </c:when>
                 </c:choose>
-
             </div>
         </header>
     </body>

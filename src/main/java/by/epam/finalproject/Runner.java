@@ -1,3 +1,4 @@
+/*
 package by.epam.finalproject;
 
 import by.epam.finalproject.dao.FacultyDao;
@@ -25,7 +26,7 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        UserDao userDao = new UserDao();
+        UserDao userDao = new UserDao(proxyConnection.getConnection());
         User user = null;
         try {
             user = userDao.selectUserByLoginAndPassword("Ringo", "root");
@@ -39,12 +40,16 @@ public class Runner {
         } catch (DaoException e) {
             e.printStackTrace();
         }
+*/
 /*        User user2 = userDao.registerUser("egrgeg", "rrgegoot", "grgwgwrwg", "gwgwwrgwg");
-        System.out.println(user2);*/
+        System.out.println(user2);*//*
 
 
+
+*/
 /*        ConnectionCreator creator = new ConnectionCreator();
-        LinkedList<Connection> list = creator.createPool();*/
+        LinkedList<Connection> list = creator.createPool();*//*
+
         FacultyDao facultyDAO = new FacultyDao();
         List<Faculty> faculties = null;
         try {
@@ -62,19 +67,23 @@ public class Runner {
         }
         System.out.println(faculty);
 
+*/
 /*        UserDao userDao = new UserDao();
         User user = userDao.selectUserByLoginAndPassword("Admin", "root");
-        System.out.println(user);*/
+        System.out.println(user);*//*
 
+
+*/
 /*        boolean isUpdate = userDao.updateUserCertificate("88", "2");
         System.out.println(isUpdate);
 
 
         MarkService markService = new MarkService();
         boolean isUpdate3 = markService.isUpdate("2", "1", "99");
-        System.out.println(isUpdate3);*/
+        System.out.println(isUpdate3);*//*
 
-        ApplicationService applicationService = new ApplicationService();
+
+        ApplicationService applicationService = new ApplicationService(proxyConnection.getConnection());
         List<Application> applications = null;
         try {
             applications = applicationService.findAll();
@@ -89,6 +98,7 @@ public class Runner {
             System.out.println(a);
         }
 
+*/
 /*        List<String> list = new ArrayList<>();
         list.add("/show_all_faculties");
 
@@ -97,7 +107,8 @@ public class Runner {
 
         boolean isTrue = checkPath("/University/controller?command=show_all_faculties",
                 list.get(0));
-        System.out.println(isTrue);*/
+        System.out.println(isTrue);*//*
+
 
 
         List<String> userCommands = new ArrayList<>
@@ -142,3 +153,4 @@ public class Runner {
         return matcher.matches();
     }
 }
+*/

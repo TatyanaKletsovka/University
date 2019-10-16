@@ -1,7 +1,7 @@
 package by.epam.finalproject.command.adminCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
-import by.epam.finalproject.dao.FacultyDao;
 import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.entity.Faculty;
 import by.epam.finalproject.entity.STATUS;
@@ -17,18 +17,18 @@ import java.util.List;
 
 import static by.epam.finalproject.command.CommandConstant.MAIN_JSP;
 
-public class ProcessApplications implements ActionCommand {
+public class ProcessApplications extends AbstractCommand implements ActionCommand {
 
     private final static Logger LOGGER = Logger.getLogger(ProcessApplications.class);
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
 
-        FacultyService facultyService = new FacultyService();
+        FacultyService facultyService = new FacultyService(proxyConnection.getConnection());
         List<Faculty> faculties = facultyService.findAll();
         LOGGER.info("List faculties created.");
 
-        ApplicationService applicationService = new ApplicationService();
+        ApplicationService applicationService = new ApplicationService(proxyConnection.getConnection());
         List<Application> applicationsToUpdateStatus = new ArrayList<>();
 
         for (int i = 0; i < faculties.size(); i++) {

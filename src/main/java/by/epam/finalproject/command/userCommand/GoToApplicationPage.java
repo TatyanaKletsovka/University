@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.userCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.Faculty;
 import by.epam.finalproject.exception.DaoException;
@@ -10,14 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class GoToApplicationPage implements ActionCommand {
+public class GoToApplicationPage extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
 
         String facultyId = request.getParameter(FACULTY_ID_PARAMETER);
 
-        FacultyService facultyService = new FacultyService();
+        FacultyService facultyService = new FacultyService(proxyConnection.getConnection());
         Faculty faculty = facultyService.findFaculty(facultyId);
 
         HttpSession currentSession = request.getSession();

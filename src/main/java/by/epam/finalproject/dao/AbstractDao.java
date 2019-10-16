@@ -12,16 +12,16 @@ import java.util.Map;
 public abstract class AbstractDao<K, T extends Entity> {
 
     private Connection connection;
-    protected ConnectionManager connectionManager;
+
+    public AbstractDao(Connection connection) {
+        this.connection = connection;
+    }
 
     public AbstractDao() {
-        this.connectionManager = new ConnectionManager();
-        this.connection = connectionManager.getConnection();
     }
 
     protected List<T> executeQuery(String query, Builder<T> builder, String... params) throws DaoException {
         try {
-            Connection connection = connectionManager.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
             for (int i = 0; i < params.length; i++) {
                 statement.setString(i + 1, params[i]);
@@ -41,16 +41,11 @@ public abstract class AbstractDao<K, T extends Entity> {
 
     protected boolean executeUpdate(String query, String... params) throws DaoException {
         try {
-            Connection connection = connectionManager.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
             for (int i = 0; i < params.length; i++) {
                 statement.setString(i + 1, params[i]);
             }
-            if (statement.executeUpdate() > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return statement.executeUpdate() > 0;
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -60,13 +55,10 @@ public abstract class AbstractDao<K, T extends Entity> {
     public abstract List<T> findAll() throws DaoException;
     public abstract T findById(K id) throws DaoException;
     public abstract boolean delete(K id) throws DaoException;
-    public abstract boolean delete(T entity) throws DaoException;
-    public abstract boolean create(T entity) throws DaoException;
-    public abstract T update(T entity) throws DaoException;
 
     // Возвращения экземпляра Connection в пул соединений
     public void returnConnectionInPool() {
-        connectionManager.close();
+      //  proxyConnection.close();
     }
 
     // Получение экземпляра PrepareStatement

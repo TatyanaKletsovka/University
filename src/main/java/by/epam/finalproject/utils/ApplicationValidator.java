@@ -11,10 +11,6 @@ public class ApplicationValidator {
         int totalScore = student.getCertificate() + Calculator.buildSumMarks(student.getMarks());
         Faculty faculty = application.getFaculty();
         int passingPoints = faculty.getPassingPoints();
-        if (totalScore >= passingPoints) {
-            return true;
-        } else {
-            return false;
-        }
+        return totalScore >= passingPoints;
     }
 }

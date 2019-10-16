@@ -5,6 +5,7 @@ import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.exception.DaoException;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +50,13 @@ public class ApplicationDao extends AbstractDao<String, Application> {
     private static final String UPDATE_APPLICATION_SET_STATUS_WHERE_ID =
             "UPDATE application SET status = ? WHERE application.id = ?";
 
+    public ApplicationDao(Connection connection) {
+        super(connection);
+    }
 
     public boolean createApplication(String facultyId, String userId) throws DaoException {
 
-        boolean isCreate = executeUpdate(INSERT_INTO_APPLICATION, facultyId, userId);
-        return isCreate;
+        return executeUpdate(INSERT_INTO_APPLICATION, facultyId, userId);
     }
 
     @Override
@@ -94,26 +97,10 @@ public class ApplicationDao extends AbstractDao<String, Application> {
         return null;
     }
 
-    @Override
-    public boolean delete(Application entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public boolean create(Application entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public Application update(Application entity) throws DaoException {
-        return null;
-    }
-
     public boolean delete(String applicationId) throws DaoException {
 
         return executeUpdate(DELETE_APPLICATION_WHERE_ID, applicationId);
     }
-
 
     private List<Application> createListCurrentApplications(List<Application> allApplications) {
 

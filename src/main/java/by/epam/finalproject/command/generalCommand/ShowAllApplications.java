@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.generalCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.exception.DaoException;
@@ -12,12 +13,12 @@ import java.util.List;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_APPLICATIONS_ATTRIBUTE;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_APPLICATIONS_GENERAL_JSP;
 
-public class ShowAllApplications implements ActionCommand {
+public class ShowAllApplications extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
 
-        ApplicationService applicationService = new ApplicationService();
+        ApplicationService applicationService = new ApplicationService(proxyConnection.getConnection());
         List<Application> showAllApplications = applicationService.findAll();
 
         HttpSession currentSession = request.getSession();

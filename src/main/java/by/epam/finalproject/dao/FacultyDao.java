@@ -4,6 +4,7 @@ import by.epam.finalproject.builder.FacultyBuilder;
 import by.epam.finalproject.entity.Faculty;;
 import by.epam.finalproject.exception.DaoException;
 
+import java.sql.Connection;
 import java.util.*;
 
 public class FacultyDao extends AbstractDao<String, Faculty> {
@@ -21,6 +22,11 @@ public class FacultyDao extends AbstractDao<String, Faculty> {
             "SELECT faculty.id, faculty.name, places, passing_points, subject.id, subject.name FROM faculty " +
                     "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
                     "JOIN subject ON subjects_in_faculty.subject_id = subject.id WHERE faculty.id = ?";
+
+    public FacultyDao(Connection connection) {
+        super(connection);
+    }
+
     @Override
     public List<Faculty> findAll() throws DaoException {
 
@@ -42,21 +48,6 @@ public class FacultyDao extends AbstractDao<String, Faculty> {
     @Override
     public boolean delete(String id) throws DaoException {
         return false;
-    }
-
-    @Override
-    public boolean delete(Faculty entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public boolean create(Faculty entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public Faculty update(Faculty entity) throws DaoException {
-        return null;
     }
 
     private List<Faculty> createListCurrentFaculties(List<Faculty> allFaculties) {

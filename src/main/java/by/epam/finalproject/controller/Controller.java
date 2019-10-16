@@ -15,10 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static by.epam.finalproject.command.CommandConstant.ERROR_JSP;
+import static by.epam.finalproject.command.CommandConstant.IS_REDIRECT_ATTRIBUTE;
+
 @WebServlet("/by/epam/finalproject/controller")
 public class Controller extends HttpServlet {
 
     HttpSession session;
+
+
     private final static Logger LOGGER = Logger.getLogger(Controller.class);
 
     @Override
@@ -35,25 +40,22 @@ public class Controller extends HttpServlet {
 
         String page;
 
-        ActionFactory client = new ActionFactory();
-        ActionCommand command = client.defineCommand(request);
+        ActionFactory actionFactory = new ActionFactory();
+        ActionCommand command = actionFactory.defineCommand(request);
         LOGGER.info("Command = " + command);
 
-        Boolean isRedirect = (Boolean) request.getAttribute("isRedirect");
+   //     Boolean isRedirect = (Boolean) request.getAttribute("isRedirect");
 
         try {
             page = command.execute(request);
-            if (isRedirect) {
+            if (request.getAttribute(IS_REDIRECT_ATTRIBUTE) != null) {
                 redirect(page, request, response);
             } else {
                 forward(page, request, response);
             }
-        } catch (IllegalArgumentException e) {
-            request.setAttribute("wrongAction", MessageManager.getProperty("message.wrong_action"));
-            forward("/jsp/error/error.jsp", request, response);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-            forward("/jsp/error/error.jsp", request, response);
+            forward(ERROR_JSP, request, response);
         }
         // метод возвращает страницу ответа
 

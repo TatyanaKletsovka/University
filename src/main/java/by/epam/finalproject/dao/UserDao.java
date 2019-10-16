@@ -4,6 +4,7 @@ import by.epam.finalproject.builder.UserBuilder;
 import by.epam.finalproject.entity.User;
 import by.epam.finalproject.exception.DaoException;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class UserDao extends AbstractDao<String, User> {
@@ -17,6 +18,11 @@ public class UserDao extends AbstractDao<String, User> {
             "INSERT INTO user (login, password, firstName, lastName) values (?, ?, ?, ?)";
     private static final String UPDATE_USER_WHERE_ID =
             "UPDATE user SET certificate = ? WHERE user.id = ?";
+
+
+    public UserDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public List<User> findAll() throws DaoException{
@@ -78,21 +84,4 @@ public class UserDao extends AbstractDao<String, User> {
     public boolean delete(String id) throws DaoException {
         return false;
     }
-
-    @Override
-    public boolean delete(User entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public boolean create(User entity) throws DaoException {
-        return false;
-    }
-
-    @Override
-    public User update(User entity) throws DaoException {
-        return null;
-    }
-
-
 }

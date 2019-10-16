@@ -1,5 +1,6 @@
 package by.epam.finalproject.command.adminCommand;
 
+import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.User;
 import by.epam.finalproject.exception.DaoException;
@@ -12,12 +13,12 @@ import java.util.List;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_USERS_ADMIN_JSP;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_USERS_ATTRIBUTE;
 
-public class ShowAllUsers implements ActionCommand {
+public class ShowAllUsers extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
 
-        UserService userService = new UserService();
+        UserService userService = new UserService(proxyConnection.getConnection());
         List<User> showAllUsers = userService.findAll();
 
         HttpSession currentSession = request.getSession();
