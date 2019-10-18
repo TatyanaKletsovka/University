@@ -30,34 +30,34 @@
 }
 
 .wrapper_form {
-    width: 300px;
+    width: 23%;
     height: 300px;
     background-color: rgba(120, 120, 120, 0.9);
     text-align: center;
     border-radius: 8px;
     padding-top: 30px;
     box-sizing: border-box;
-    margin: 0 auto 20px;
+    margin: 3% auto;
 }
 
 .log_input {
     display: block;
     border: 1px solid #000;
-    width: 250px;
+    width: 80%;
     margin: 0 auto;
-    padding: 10px 0 10px 0;
+    padding: 5% 2% 2% 2%;
     border-radius: 5px;
 }
 
 .log_button {
     display: block;
-    width: 250px;
-    margin: 30px auto 0;
-    background-color: #72a4a0;
+    width: 80%;
+    margin: 1% auto 0;
+    background-color: #5bc8bf;
     padding: 10px 0 10px 0;
     cursor: pointer;
     border-radius: 5px;
-    border: 2px solid #4e9690;
+    border: 2px solid #38a59c;
     font-weight: bold;
     color: #fff;
     font-family: 'Caviar', serif;
@@ -186,7 +186,7 @@
     color: #fff;
 }
 
-.table_order table {
+.table table {
     border-radius: 8px;
     width: 98%;
     font-size: 16px;
@@ -195,17 +195,17 @@
     margin: 0 auto 30px;
 }
 
-.table_order table th, .table_order table td {
+.table table th, .table table td {
     padding: 10px 20px 10px 20px;
     text-align: left;
 }
 
-.table_order table td a {
+.table table td a {
     text-decoration: none;
     color: #fff;
 }
 
-.table_order table td a:hover {
+.table table td a:hover {
     color: #de81df;
 }
 

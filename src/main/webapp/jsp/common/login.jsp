@@ -31,13 +31,9 @@
                 <p>
                     <label>${pageScope.enter_password}<input class="log_input" type="password" name="password" value=""/></label>
                 </p>
-                ${errorLoginMessage}
+                <p align="center">${errorLoginMessage}</p>
             <br/>
-                ${wrongAction}
-            <br/>
-                ${nullPage}
-            <br/>
-            <input type="submit" value="${pageScope.log_in}"/>
+            <input class="log_button" type="submit" value="${pageScope.log_in}"/>
             </form>
         </div>
 

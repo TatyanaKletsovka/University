@@ -33,7 +33,7 @@
             <%@ include file="/jsp/common/mainMenu.jsp"%>
         </div>
 
-        <div class="table_order">
+        <div class="table">
             <table>
                 <tr>
                     <th>${pageScope.number}</th>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>,
 
 <html>
     <body class="page">
