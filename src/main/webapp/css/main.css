@@ -4,12 +4,23 @@
 }
 
 .page {
+    height: 92%;
     margin: 0;
     padding: 0;
     background: url("../img/background.jpg") no-repeat center center fixed;
     background-size: cover;
     color: white;
     font-family: 'Caviar', serif;
+}
+
+.welcome {
+    text-align: center;
+    color: #ffd659;
+    font-family: 'Caviar', bold;
+    margin: 3% 10%;
+    font-size: 150px;
+    background-color: rgba(120, 120, 120, 0.9);
+    border-radius: 60px;
 }
 
 .title {
@@ -731,14 +742,19 @@
 .footer {
     background-color: rgba(120, 120, 120, 0.9);
     width: 98%;
+    height: 8%;
     color: white;
     border-radius: 10px;
     bottom: 0;
+        margin-left: 1%;
+
     margin-left: 1%;
+    margin-bottom: : 1%;
     text-align: right;
+    position: absolute;
 }
 
 .footer p {
     margin-right: 1%;
-    padding: 1%;
+    text-align: right;
 }

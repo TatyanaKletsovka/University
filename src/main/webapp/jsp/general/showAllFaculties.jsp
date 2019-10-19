@@ -24,6 +24,7 @@
     </head>
     <body class="page">
 
+
         <div>
             <%@ include file="/jsp/common/header.jsp"%>
         </div>
@@ -41,9 +42,6 @@
                     <th>${pageScope.places}</th>
                     <th>${pageScope.passing_points}</th>
                     <th>${pageScope.subjects}</th>
-                        <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                            <th class="button">${pageScope.delete}</th>
-                        </c:if>
                         <c:if test="${sessionScope.user.role == 'USER'}">
                             <th class="button">${pageScope.apply}</th>
                         </c:if>
@@ -56,9 +54,6 @@
                         <td> ${faculty.places}</td>
                         <td> ${faculty.passingPoints}</td>
                         <td> ${faculty.subjects}</td>
-                            <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                                <td class="button"><button>${pageScope.delete}</button></td>
-                            </c:if>
                             <c:if test="${sessionScope.user.role == 'USER'}">
                                 <td class="button">
                                     <form name="button" method="POST" action="controller">
@@ -70,10 +65,6 @@
                             </c:if>
                     </tr>
                 </c:forEach>
-
-                <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                <th class="button" colspan="2"><button>${pageScope.add_new_faculty}</button></th>
-                </c:if>
             </table>
         </div>
 

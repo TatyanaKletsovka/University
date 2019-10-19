@@ -40,9 +40,9 @@
 
                 </tr>
 
-                <c:forEach items="${showAllUsers}" var="user">
+                <c:forEach items="${showAllUsers}" var="user" begin="0" varStatus="loop">
                     <tr>
-                        <td> ${user.id}</td>
+                        <td> ${loop.begin + loop.count}</td>
                         <td> ${user.login}</td>
                         <td> ${user.role}</td>
                             <c:if test="${sessionScope.user.role == 'ADMIN'}">

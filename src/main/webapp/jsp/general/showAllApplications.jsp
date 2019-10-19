@@ -52,9 +52,9 @@
             <th>${pageScope.date_of_register}</th>
         </tr>
 
-        <c:forEach items="${showAllApplications}" var="application">
+        <c:forEach items="${showAllApplications}" var="application" begin="0" varStatus="loop">
             <tr>
-                <td> ${application.id}</td>
+                <td> ${loop.begin + loop.count}</td>
                 <td> ${application.faculty.name}</td>
                 <td> ${application.faculty.places}</td>
                 <td> ${application.faculty.passingPoints}</td>

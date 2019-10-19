@@ -7,16 +7,10 @@
 <fmt:bundle basename="page_content">
     <fmt:message key="main_menu.main" var="main"/>
     <fmt:message key="main_menu.show_faculties" var="show_faculties"/>
+    <fmt:message key="main_menu.show_faculties_admin" var="show_faculties_admin"/>
     <fmt:message key="main_menu.show_all_users" var="show_all_users"/>
-    <fmt:message key="main_menu.show_all_students" var="show_all_students"/>
     <fmt:message key="main_menu.show_all_applications" var="show_all_applications"/>
     <fmt:message key="main_menu.show_my_applications" var="show_my_applications"/>
-
-
-
-
-    <fmt:message key="menu.show_faculties" var="show_faculties"/>
-
 </fmt:bundle>
 
 <div class="user_menu">
@@ -28,15 +22,11 @@
                  </li>
 
                  <li>
-                     <a href="${pageContext.request.contextPath}/controller?command=show_all_faculties">${pageScope.show_faculties}</a>
+                     <a href="${pageContext.request.contextPath}/controller?command=show_all_faculties">${pageScope.show_faculties_admin}</a>
                  </li>
 
                  <li>
                      <a href="${pageContext.request.contextPath}/controller?command=show_all_users">${pageScope.show_all_users}</a>
-                 </li>
-
-                 <li>
-                     <a href="${pageContext.request.contextPath}/controller?command=show_all_students">${pageScope.show_all_students}</a>
                  </li>
 
                  <li>
@@ -51,7 +41,7 @@
                  </li>
 
                  <li>
-                     <a href="${pageContext.request.contextPath}/controller?command=show_all_faculties">${pageScope.show_faculties}/Apply</a>
+                     <a href="${pageContext.request.contextPath}/controller?command=show_all_faculties">${pageScope.show_faculties}</a>
                  </li>
 
                  <li>

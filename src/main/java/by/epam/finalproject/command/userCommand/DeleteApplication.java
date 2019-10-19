@@ -20,7 +20,8 @@ public class DeleteApplication extends AbstractCommand implements ActionCommand 
         boolean isDelete = applicationService.deleteApplicationWhereId(applicationId);
 
         if (isDelete) {
-            return MAIN_JSP;
+            ShowMyApplications showMyApplications = new ShowMyApplications();
+            return showMyApplications.execute(request);
         } else {
             return ERROR_JSP;
         }

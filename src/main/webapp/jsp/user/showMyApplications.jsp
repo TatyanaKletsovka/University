@@ -40,7 +40,7 @@
                     <th>${pageScope.faculty}</th>
                     <th>${pageScope.places}</th>
                     <th>${pageScope.passing_points}</th>
-                    <th>${pageScope.first_name}e</th>
+                    <th>${pageScope.first_name}</th>
                     <th>${pageScope.last_name}</th>
                     <th>${pageScope.certificate}</th>
                     <th>${pageScope.marks}</th>
@@ -49,9 +49,9 @@
                     <th class="button">${pageScope.delete}</th>
                 </tr>
 
-                <c:forEach items="${showMyApplications}" var="application">
+                <c:forEach items="${showMyApplications}" var="application" begin="0" varStatus="loop">
                     <tr>
-                        <td> ${application.id}</td>
+                        <td> ${loop.begin + loop.count}</td>
                         <td> ${application.faculty.name}</td>
                         <td> ${application.faculty.places}</td>
                         <td> ${application.faculty.passingPoints}</td>

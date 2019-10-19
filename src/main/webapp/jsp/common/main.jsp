@@ -16,6 +16,8 @@
            <%@ include file="/jsp/common/mainMenu.jsp"%>
         </div>
 
+        <h1 class="welcome">Welcome to our university!</h1>
+
         <div>
             <%@ include file="/jsp/common/footer.jsp"%>
         </div>

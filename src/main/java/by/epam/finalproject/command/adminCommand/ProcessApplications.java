@@ -2,6 +2,8 @@ package by.epam.finalproject.command.adminCommand;
 
 import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
+import by.epam.finalproject.command.generalCommand.ShowAllApplications;
+import by.epam.finalproject.command.userCommand.ShowMyApplications;
 import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.entity.Faculty;
 import by.epam.finalproject.entity.STATUS;
@@ -52,6 +54,7 @@ public class ProcessApplications extends AbstractCommand implements ActionComman
 
         applicationService.updateApplicationStatus(applicationsToUpdateStatus);
 
-        return MAIN_JSP;
+        ShowAllApplications showAllApplications = new ShowAllApplications();
+        return showAllApplications.execute(request);
     }
 }

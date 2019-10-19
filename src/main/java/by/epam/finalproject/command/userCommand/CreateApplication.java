@@ -58,7 +58,7 @@ public class CreateApplication extends AbstractCommand implements ActionCommand 
         UserService userService = new UserService(proxyConnection.getConnection());
         String userId = String.valueOf(user.getId());
 
-        boolean isUpdateCertificate = userService.isUpdateCertificate(certificate, userId);
+        userService.isUpdateCertificate(certificate, userId);
 
         MarkService markService = new MarkService(proxyConnection.getConnection());
         for (int i = 0; i < marks.size(); i++) {
@@ -67,14 +67,11 @@ public class CreateApplication extends AbstractCommand implements ActionCommand 
         }
 
         ApplicationService applicationService = new ApplicationService(proxyConnection.getConnection());
-        boolean isUpdateApplication = applicationService.createApplication(facultyId, userId);
+        applicationService.createApplication(facultyId, userId);
 
         currentSession.setAttribute(APPLICATION_CREATED_ATTRIBUTE, true);
 
-        if (isUpdateCertificate && isUpdateApplication) {
-            return MAIN_JSP;
-        } else {
-            return SHOW_ALL_FACULTIES_GENERAL_JSP;
-        }
+        ShowMyApplications showMyApplications = new ShowMyApplications();
+        return showMyApplications.execute(request);
     }
 }
