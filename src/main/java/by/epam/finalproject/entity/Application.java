@@ -1,13 +1,13 @@
 package by.epam.finalproject.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Application extends Entity{
 
     private Faculty faculty;
     private Student student;
     private STATUS status;
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
 
     public Application() {
     }
@@ -41,11 +41,11 @@ public class Application extends Entity{
         this.status = status;
     }
 
-    public LocalDate getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDate dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

@@ -4,7 +4,7 @@ import by.epam.finalproject.entity.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ApplicationBuilder implements Builder<Application> {
@@ -59,17 +59,11 @@ public class ApplicationBuilder implements Builder<Application> {
         STATUS status = STATUS.valueOf(applyStatus.toUpperCase());
         application.setStatus(status);
 
-  //      Date date = new Date();
         String dateOfRegister = resultSet.getString("date_of_register");
 
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    //    DateTimeFormatter dt = formatter2.parse(Character[dateOfRegister]);
-
-
-  //      String dateInString = "Mon, 05 May 1980";
-  //      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
-        LocalDate dateTime = LocalDate.parse(dateOfRegister, formatter2);
+        LocalDateTime dateTime = LocalDateTime.parse(dateOfRegister, formatter2);
         application.setDateTime(dateTime);
 
         return application;

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="datetag" uri="https://epam.by/datetag" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 
 <fmt:bundle basename="page_content">
@@ -65,7 +66,7 @@
                 <td> ${application.student.certificate}</td>
                 <td> ${application.student.marks}</td>
                 <td> ${application.status}</td>
-                <td> ${application.dateTime}</td>
+                <td> <datetag:formatDate dateTime="${application.dateTime}"/> </td>
             </tr>
         </c:forEach>
         <c:if test="${sessionScope.user.role == 'ADMIN'}">

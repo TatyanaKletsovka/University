@@ -35,6 +35,7 @@
 
 
         <div class="table">
+            <p class="message">${notPassingBallAttribute}</p>
             <table>
                 <tr>
                     <th>${pageScope.number}</th>

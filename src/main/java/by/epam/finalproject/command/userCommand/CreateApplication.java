@@ -4,6 +4,7 @@ import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.*;
 import by.epam.finalproject.exception.DaoException;
+import by.epam.finalproject.resource.MessageManager;
 import by.epam.finalproject.service.ApplicationService;
 import by.epam.finalproject.service.FacultyService;
 import by.epam.finalproject.service.MarkService;
@@ -52,6 +53,7 @@ public class CreateApplication extends AbstractCommand implements ActionCommand 
         ApplicationValidator validator = new ApplicationValidator();
         boolean isValid = validator.validateByPassingPoints(application);
         if (!isValid) {
+            request.setAttribute(NOT_PASSING_BALL_ATTRIBUTE, MessageManager.getProperty(NOT_PASSING_BALL_PROPERTY));
             return SHOW_ALL_FACULTIES_GENERAL_JSP;
         }
 

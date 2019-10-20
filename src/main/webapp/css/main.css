@@ -18,9 +18,14 @@
     color: #ffd659;
     font-family: 'Caviar', bold;
     margin: 3% 10%;
-    font-size: 150px;
+    font-size: 600%;
     background-color: rgba(120, 120, 120, 0.9);
     border-radius: 60px;
+}
+
+.message {
+    text-align: center;
+    background-color: rgba(120, 120, 120, 0.9);
 }
 
 .title {

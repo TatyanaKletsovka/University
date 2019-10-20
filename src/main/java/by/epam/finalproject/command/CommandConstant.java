@@ -38,5 +38,7 @@ public class CommandConstant {
     public static final String ERROR_LOGIN_MESSAGE_PROPERTY = "message.login_error";
     public static final String ERROR_UNIQUE_LOGIN_MESSAGE_ATTRIBUTE = "errorUniqueLoginMessage";
     public static final String ERROR_UNIQUE_LOGIN_MESSAGE_PROPERTY = "message.not_unique_login_error";
+    public static final String NOT_PASSING_BALL_ATTRIBUTE = "notPassingBallAttribute";
+    public static final String NOT_PASSING_BALL_PROPERTY = "message.not_passing_ball";
 
 }

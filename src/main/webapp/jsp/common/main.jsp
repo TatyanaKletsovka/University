@@ -2,7 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>,
+<%@ taglib uri="https://epam.by/datetag" prefix="datetag"%>
+
+<fmt:bundle basename="page_content">
+    <fmt:message key="main.welcome" var="welcome"/>
+</fmt:bundle>
 
 <html>
     <body class="page">
@@ -16,7 +20,7 @@
            <%@ include file="/jsp/common/mainMenu.jsp"%>
         </div>
 
-        <h1 class="welcome">Welcome to our university!</h1>
+        <h1 class="welcome">${pageScope.welcome}</h1>
 
         <div>
             <%@ include file="/jsp/common/footer.jsp"%>
