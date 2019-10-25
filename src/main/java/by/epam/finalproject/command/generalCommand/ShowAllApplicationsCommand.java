@@ -13,7 +13,7 @@ import java.util.List;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_APPLICATIONS_ATTRIBUTE;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_APPLICATIONS_GENERAL_JSP;
 
-public class ShowAllApplications extends AbstractCommand implements ActionCommand {
+public class ShowAllApplicationsCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {

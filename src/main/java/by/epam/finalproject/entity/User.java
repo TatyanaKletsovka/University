@@ -4,7 +4,7 @@ public class User extends Entity{
 
     private String login;
     private String password;
-    private ROLE role;
+    private Role role;
     private String firstName;
     private String lastName;
 
@@ -27,11 +27,11 @@ public class User extends Entity{
         this.password = password;
     }
 
-    public ROLE getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(ROLE role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

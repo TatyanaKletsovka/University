@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class DeleteApplication extends AbstractCommand implements ActionCommand {
+public class DeleteApplicationCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
@@ -20,8 +20,8 @@ public class DeleteApplication extends AbstractCommand implements ActionCommand 
         boolean isDelete = applicationService.deleteApplicationWhereId(applicationId);
 
         if (isDelete) {
-            ShowMyApplications showMyApplications = new ShowMyApplications();
-            return showMyApplications.execute(request);
+            ShowMyApplicationsCommand showMyApplicationsCommand = new ShowMyApplicationsCommand();
+            return showMyApplicationsCommand.execute(request);
         } else {
             return ERROR_JSP;
         }

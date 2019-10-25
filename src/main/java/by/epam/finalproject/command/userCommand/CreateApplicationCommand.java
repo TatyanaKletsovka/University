@@ -18,7 +18,7 @@ import java.util.List;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class CreateApplication extends AbstractCommand implements ActionCommand {
+public class CreateApplicationCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
@@ -73,7 +73,7 @@ public class CreateApplication extends AbstractCommand implements ActionCommand 
 
         currentSession.setAttribute(APPLICATION_CREATED_ATTRIBUTE, true);
 
-        ShowMyApplications showMyApplications = new ShowMyApplications();
-        return showMyApplications.execute(request);
+        ShowMyApplicationsCommand showMyApplicationsCommand = new ShowMyApplicationsCommand();
+        return showMyApplicationsCommand.execute(request);
     }
 }

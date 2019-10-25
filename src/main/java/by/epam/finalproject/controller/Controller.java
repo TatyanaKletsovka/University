@@ -42,9 +42,7 @@ public class Controller extends HttpServlet {
 
         ActionFactory actionFactory = new ActionFactory();
         ActionCommand command = actionFactory.defineCommand(request);
-        LOGGER.info("Command = " + command);
-
-   //     Boolean isRedirect = (Boolean) request.getAttribute("isRedirect");
+        LOGGER.debug("Command = " + command);
 
         try {
             page = command.execute(request);
@@ -57,20 +55,6 @@ public class Controller extends HttpServlet {
             LOGGER.error(e.getMessage(), e);
             forward(ERROR_JSP, request, response);
         }
-        // метод возвращает страницу ответа
-
-
-
-
-/*        if (page != null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(request, response);
-        } else {
-            // установка страницы c сообщением об ошибке
-            page = ConfigurationManager.getProperty("path.page.index");
-            request.getSession().setAttribute("nullPage", MessageManager.getProperty(("message.null_page")));
-            response.sendRedirect(request.getContextPath() + page);
-        }*/
     }
 
     private void redirect(String page, HttpServletRequest request, HttpServletResponse response) throws IOException {

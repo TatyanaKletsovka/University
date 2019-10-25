@@ -13,9 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class Login extends AbstractCommand implements ActionCommand {
+public class LoginCommand extends AbstractCommand implements ActionCommand {
 
-    private final static Logger LOGGER = Logger.getLogger(Login.class);
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
@@ -27,11 +26,9 @@ public class Login extends AbstractCommand implements ActionCommand {
         User user = userService.checkLoginAndPassword(login, password);
 
         if (user == null) {
-            LOGGER.warn("User was not authorised.");
             request.setAttribute(ERROR_LOGIN_MESSAGE_ATTRIBUTE, MessageManager.getProperty(ERROR_LOGIN_MESSAGE_PROPERTY));
             return LOGIN_JSP;
         }
-        LOGGER.info("User " + user.getLogin() + " was authorised.");
 
         HttpSession currentSession = request.getSession();
         currentSession.setAttribute(USER_ATTRIBUTE, user);

@@ -1,6 +1,6 @@
 package by.epam.finalproject.builder;
 
-import by.epam.finalproject.entity.ROLE;
+import by.epam.finalproject.entity.Role;
 import by.epam.finalproject.entity.User;
 
 import java.sql.ResultSet;
@@ -22,7 +22,7 @@ public class UserBuilder implements Builder<User> {
         user.setPassword(password);
 
         String userRoleValue = resultSet.getString("role");
-        ROLE role = ROLE.valueOf(userRoleValue.toUpperCase());
+        Role role = Role.valueOf(userRoleValue.toUpperCase());
         user.setRole(role);
 
         String firstName = resultSet.getString("firstName");

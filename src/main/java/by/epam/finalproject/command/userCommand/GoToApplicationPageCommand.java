@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class GoToApplicationPage extends AbstractCommand implements ActionCommand {
+public class GoToApplicationPageCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {

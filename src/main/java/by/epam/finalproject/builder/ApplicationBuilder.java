@@ -56,7 +56,7 @@ public class ApplicationBuilder implements Builder<Application> {
         student.addMark(mark);
 
         String applyStatus = resultSet.getString("status");
-        STATUS status = STATUS.valueOf(applyStatus.toUpperCase());
+        Status status = Status.valueOf(applyStatus.toUpperCase());
         application.setStatus(status);
 
         String dateOfRegister = resultSet.getString("date_of_register");

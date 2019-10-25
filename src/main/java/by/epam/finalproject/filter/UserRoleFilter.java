@@ -1,6 +1,6 @@
 package by.epam.finalproject.filter;
 
-import by.epam.finalproject.entity.ROLE;
+import by.epam.finalproject.entity.Role;
 import by.epam.finalproject.entity.User;
 import org.apache.log4j.Logger;
 
@@ -68,7 +68,7 @@ public class UserRoleFilter implements Filter {
                 if (user == null) {
                     httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/error/error.jsp");
                 } else {
-                    ROLE role = user.getRole();
+                    Role role = user.getRole();
                     List<String> accessCommands = getListAccessCommands(role);
                     if (accessCommands == null) {
                         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/error/error.jsp");
@@ -88,7 +88,7 @@ public class UserRoleFilter implements Filter {
     public void destroy() {
     }
 
-    private List<String> getListAccessCommands(ROLE userRole) {
+    private List<String> getListAccessCommands(Role userRole) {
         List<String> accessCommands = null;
         switch (userRole) {
             case USER: {

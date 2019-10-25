@@ -1,7 +1,6 @@
 package by.epam.finalproject.entity;
 
-public enum ROLE {
+public enum Role {
     ADMIN,
-    USER,
-    GUEST
+    USER
 }

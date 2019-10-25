@@ -13,7 +13,7 @@ import java.util.List;
 
 import static by.epam.finalproject.command.CommandConstant.*;
 
-public class ShowMyApplications extends AbstractCommand implements ActionCommand {
+public class ShowMyApplicationsCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {

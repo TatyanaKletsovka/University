@@ -1,6 +1,6 @@
 package by.epam.finalproject.builder;
 
-import by.epam.finalproject.entity.ROLE;
+import by.epam.finalproject.entity.Role;
 import by.epam.finalproject.entity.Student;
 
 import java.sql.ResultSet;
@@ -22,7 +22,7 @@ public class StudentBuilder implements Builder<Student> {
         student.setPassword(password);
 
         String userRoleValue = resultSet.getString("role");
-        ROLE role = ROLE.valueOf(userRoleValue.toUpperCase());
+        Role role = Role.valueOf(userRoleValue.toUpperCase());
         student.setRole(role);
 
         String firstName = resultSet.getString("firstName");

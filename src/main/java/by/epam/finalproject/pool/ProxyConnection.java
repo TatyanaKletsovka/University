@@ -17,7 +17,7 @@ public class ProxyConnection implements Connection {
      */
     public ProxyConnection() {
         connection = ConnectionPool.getInstance().getConnection();
-        LOGGER.info("ProxyConnection created.");
+        LOGGER.debug("ProxyConnection created.");
     }
 
     /**
@@ -78,11 +78,15 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Implementation of AutoCloseable interface to work with try().
+     * Close connection.
+     *
+     * @return the connection in ConnectionPool.
      */
+
     @Override
     public void close() {
         ConnectionPool.getInstance().returnConnection(connection);
+        LOGGER.debug("ProxyConnection returned in pool.");
     }
 
     @Override

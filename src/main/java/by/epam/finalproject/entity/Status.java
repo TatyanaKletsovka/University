@@ -1,6 +1,6 @@
 package by.epam.finalproject.entity;
 
-public enum STATUS {
+public enum Status {
     UNDER_CONSIDERATION,
     ACCEPTED,
     REJECTED

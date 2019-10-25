@@ -9,6 +9,8 @@
     <fmt:message key="show_all_users.number" var="number"/>
     <fmt:message key="show_all_users.login" var="login"/>
     <fmt:message key="show_all_users.role" var="role"/>
+    <fmt:message key="show_all_applications.first_name" var="first_name"/>
+    <fmt:message key="show_all_applications.last_name" var="last_name"/>
     <fmt:message key="show_all_users.delete" var="delete"/>
 </fmt:bundle>
 
@@ -33,10 +35,9 @@
                     <th>${pageScope.number}</th>
                     <th>${pageScope.login}</th>
                     <th>${pageScope.role}</th>
-
-                    <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                        <th class="button">${pageScope.delete}</th>
-                    </c:if>
+                    <th>${pageScope.first_name}</th>
+                    <th>${pageScope.last_name}</th>
+                    <th class="button">${pageScope.delete}</th>
 
                 </tr>
 
@@ -45,11 +46,11 @@
                         <td> ${loop.begin + loop.count}</td>
                         <td> ${user.login}</td>
                         <td> ${user.role}</td>
-                            <c:if test="${sessionScope.user.role == 'ADMIN'}">
-                                <td class="button">
-                                    <button>${pageScope.delete}</button>
-                                </td>
-                            </c:if>
+                        <td> ${user.firstName}</td>
+                        <td> ${user.lastName}</td>
+                        <td class="button">
+                            <button>${pageScope.delete}</button>
+                        </td>
                     </tr>
                 </c:forEach>
 

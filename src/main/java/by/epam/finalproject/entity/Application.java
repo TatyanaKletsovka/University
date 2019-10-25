@@ -6,7 +6,7 @@ public class Application extends Entity{
 
     private Faculty faculty;
     private Student student;
-    private STATUS status;
+    private Status status;
     private LocalDateTime dateTime;
 
     public Application() {
@@ -33,11 +33,11 @@ public class Application extends Entity{
         this.student = student;
     }
 
-    public STATUS getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(STATUS status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_FACULTIES_ATTRIBUTE;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_FACULTIES_GENERAL_JSP;
 
-public class ShowAllFaculties extends AbstractCommand implements ActionCommand {
+public class ShowAllFacultiesCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {

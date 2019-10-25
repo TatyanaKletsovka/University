@@ -12,7 +12,7 @@ import static by.epam.finalproject.command.CommandConstant.LOCALE_PARAMETER;
 import static by.epam.finalproject.command.CommandConstant.MAIN_JSP;
 import static by.epam.finalproject.resource.MessageManager.DEFAULT_LOCALE;
 
-public class ChangeLanguage extends AbstractCommand implements ActionCommand {
+public class ChangeLanguageCommand extends AbstractCommand implements ActionCommand {
 
     private static final String RU_LANGUAGE = "ru";
     private static final String US_LANGUAGE = "en";

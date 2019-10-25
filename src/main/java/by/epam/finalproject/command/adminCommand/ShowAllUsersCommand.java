@@ -13,7 +13,7 @@ import java.util.List;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_USERS_ADMIN_JSP;
 import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_USERS_ATTRIBUTE;
 
-public class ShowAllUsers extends AbstractCommand implements ActionCommand {
+public class ShowAllUsersCommand extends AbstractCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {

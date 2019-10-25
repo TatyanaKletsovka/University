@@ -2,11 +2,10 @@ package by.epam.finalproject.command.adminCommand;
 
 import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
-import by.epam.finalproject.command.generalCommand.ShowAllApplications;
-import by.epam.finalproject.command.userCommand.ShowMyApplications;
+import by.epam.finalproject.command.generalCommand.ShowAllApplicationsCommand;
 import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.entity.Faculty;
-import by.epam.finalproject.entity.STATUS;
+import by.epam.finalproject.entity.Status;
 import by.epam.finalproject.exception.DaoException;
 import by.epam.finalproject.service.ApplicationService;
 import by.epam.finalproject.service.FacultyService;
@@ -17,11 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.epam.finalproject.command.CommandConstant.MAIN_JSP;
+public class ProcessApplicationsCommand extends AbstractCommand implements ActionCommand {
 
-public class ProcessApplications extends AbstractCommand implements ActionCommand {
-
-    private final static Logger LOGGER = Logger.getLogger(ProcessApplications.class);
+    private final static Logger LOGGER = Logger.getLogger(ProcessApplicationsCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) throws DaoException {
@@ -42,9 +39,9 @@ public class ProcessApplications extends AbstractCommand implements ActionComman
             for (int j = 0; j < applications.size(); j++) {
                 Application application = applications.get(j);
                 if (j < faculty.getPlaces()) {
-                    application.setStatus(STATUS.ACCEPTED);
+                    application.setStatus(Status.ACCEPTED);
                 } else {
-                    application.setStatus(STATUS.REJECTED);
+                    application.setStatus(Status.REJECTED);
                 }
                 applicationsToUpdateStatus.add(application);
                 LOGGER.info("Application: " + application.getId() + " in process");
@@ -54,7 +51,7 @@ public class ProcessApplications extends AbstractCommand implements ActionComman
 
         applicationService.updateApplicationStatus(applicationsToUpdateStatus);
 
-        ShowAllApplications showAllApplications = new ShowAllApplications();
-        return showAllApplications.execute(request);
+        ShowAllApplicationsCommand showAllApplicationsCommand = new ShowAllApplicationsCommand();
+        return showAllApplicationsCommand.execute(request);
     }
 }

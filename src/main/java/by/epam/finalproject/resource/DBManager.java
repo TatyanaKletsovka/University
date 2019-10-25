@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 public class DBManager {
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
 
-    // класс извлекает информацию из файла database.properties
     public DBManager() {
     }
 
