@@ -72,9 +72,5 @@
                 </c:forEach>
             </table>
         </div>
-
-        <div>
-            <%@ include file="/jsp/common/footer.jsp"%>
-        </div>
     </body>
 </html>

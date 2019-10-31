@@ -55,8 +55,4 @@ public class MarkDao extends AbstractDao<String, Mark> {
         return null;
     }
 
-    @Override
-    public boolean delete(String id) throws DaoException {
-        return false;
-    }
 }

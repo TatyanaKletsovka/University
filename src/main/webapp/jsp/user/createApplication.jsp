@@ -25,7 +25,7 @@
            <%@ include file="/jsp/common/mainMenu.jsp"%>
         </div>
 
-    <div class="training_program_description_day">
+    <div class="create_application_form">
         <form id="createExercise" name="createExercise" method="POST"
               action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="create_application"/>
@@ -47,21 +47,17 @@
             </p>
             <p>
                 <label>${pageScope.school_certificate}
-                    <input id="certificate_id" class="create_exercise_name" type="text" name="certificate"
+                    <input id="certificate_id" class="create_application_name" type="text" name="certificate"
                     value="" onkeyup="checkCertificate();"/>
                 </label>
             </p>
 
-            <button class="create_exercise_confirm" id="submit" type="submit" disabled>${pageScope.apply}</button>
+            <button class="create_application_confirm" id="submit" type="submit" disabled>${pageScope.apply}</button>
         </form>
     </div>
 
     <script>
         <jsp:directive.include file="/js/applyValidation.js"/>
     </script>
-
-        <div>
-            <%@ include file="/jsp/common/footer.jsp"%>
-        </div>
     </body>
 </html>

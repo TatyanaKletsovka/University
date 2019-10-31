@@ -1,6 +1,7 @@
 package by.epam.finalproject.entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Application extends Entity{
 
@@ -47,6 +48,23 @@ public class Application extends Entity{
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Application that = (Application) o;
+        return faculty.equals(that.faculty) &&
+                student.equals(that.student) &&
+                status == that.status &&
+                dateTime.equals(that.dateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), faculty, student, status, dateTime);
     }
 
     @Override

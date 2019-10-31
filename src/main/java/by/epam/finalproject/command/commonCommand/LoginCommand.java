@@ -3,10 +3,9 @@ package by.epam.finalproject.command.commonCommand;
 import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.User;
-import by.epam.finalproject.exception.DaoException;
+import by.epam.finalproject.exception.ServiceException;
 import by.epam.finalproject.resource.MessageManager;
 import by.epam.finalproject.service.UserService;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,7 @@ public class LoginCommand extends AbstractCommand implements ActionCommand {
 
 
     @Override
-    public String execute(HttpServletRequest request) throws DaoException {
+    public String execute(HttpServletRequest request) throws ServiceException {
 
         String login = request.getParameter(LOGIN_PARAMETER);
         String password = request.getParameter(PASSWORD_PARAMETER);

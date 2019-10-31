@@ -2,8 +2,6 @@ package by.epam.finalproject.controller;
 
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.command.factory.ActionFactory;
-import by.epam.finalproject.resource.ConfigurationManager;
-import by.epam.finalproject.resource.MessageManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -62,8 +60,6 @@ public class Controller extends HttpServlet {
     }
 
     private void forward(String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String message = MessageManager.getProperty("Page not found.");
-        request.setAttribute("message", message);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(page);
         requestDispatcher.forward(request, response);
     }

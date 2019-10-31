@@ -2,6 +2,7 @@ package by.epam.finalproject.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Student extends User {
 
@@ -43,6 +44,21 @@ public class Student extends User {
         if (marks != null && marks.contains(mark)) {
             marks.remove(mark);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Student student = (Student) o;
+        return certificate == student.certificate &&
+                marks.equals(student.marks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), certificate, marks);
     }
 
     @Override

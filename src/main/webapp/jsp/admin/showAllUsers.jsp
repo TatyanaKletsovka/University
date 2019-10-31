@@ -37,7 +37,6 @@
                     <th>${pageScope.role}</th>
                     <th>${pageScope.first_name}</th>
                     <th>${pageScope.last_name}</th>
-                    <th class="button">${pageScope.delete}</th>
 
                 </tr>
 
@@ -48,17 +47,11 @@
                         <td> ${user.role}</td>
                         <td> ${user.firstName}</td>
                         <td> ${user.lastName}</td>
-                        <td class="button">
-                            <button>${pageScope.delete}</button>
-                        </td>
+
                     </tr>
                 </c:forEach>
 
             </table>
         </div>
     </body>
-
-    <div>
-        <%@ include file="/jsp/common/footer.jsp"%>
-    </div>
 </html>

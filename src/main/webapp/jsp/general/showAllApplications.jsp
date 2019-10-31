@@ -77,12 +77,6 @@
             </th>
         </c:if>
     </table>
-
-
-    </div>
-
-    <div>
-        <%@ include file="/jsp/common/footer.jsp"%>
     </div>
     </body>
 </html>

@@ -9,15 +9,10 @@ import java.util.*;
 
 public class FacultyDao extends AbstractDao<String, Faculty> {
 
-    private static final String SELECT_ALL_FACULTIES = "SELECT * FROM faculty";
     private static final String SELECT_ALL_FACULTIES_JOIN_SUBJECTS =
             "SELECT faculty.id, faculty.name, places, passing_points, subject.id, subject.name FROM faculty " +
                     "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
                     "JOIN subject ON subjects_in_faculty.subject_id = subject.id";
-    private static final String SELECT_FACULTY_JOIN_SUBJECTS_BY_NAME =
-            "SELECT faculty.id, faculty.name, places, passing_points, subject.name FROM faculty " +
-                    "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
-                    "JOIN subject ON subjects_in_faculty.subject_id = subject.id WHERE faculty.name = ?";
     private static final String SELECT_FACULTY_JOIN_SUBJECTS_BY_ID =
             "SELECT faculty.id, faculty.name, places, passing_points, subject.id, subject.name FROM faculty " +
                     "JOIN subjects_in_faculty ON faculty.id = subjects_in_faculty.faculty_id " +
@@ -43,11 +38,6 @@ public class FacultyDao extends AbstractDao<String, Faculty> {
         } else {
             return null;
         }
-    }
-
-    @Override
-    public boolean delete(String id) throws DaoException {
-        return false;
     }
 
     private List<Faculty> createListCurrentFaculties(List<Faculty> allFaculties) {

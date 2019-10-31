@@ -21,9 +21,5 @@
         </div>
 
         <h1 class="welcome">${pageScope.welcome}</h1>
-
-        <div>
-            <%@ include file="/jsp/common/footer.jsp"%>
-        </div>
     </body>
 </html>

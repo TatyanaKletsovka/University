@@ -22,7 +22,7 @@ public class DateFormatterTag extends SimpleTagSupport {
     }
 
     @Override
-    public void doTag() throws JspException, IOException {
+    public void doTag() throws IOException {
         String date = dateTime;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);

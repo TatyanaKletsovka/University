@@ -9,9 +9,7 @@ import java.util.List;
 
 public class StudentDao extends AbstractDao<String, Student>{
 
-    private static final String SELECT_ALL_USERS = "SELECT * FROM user";
-    private static final String SELECT_USER_BY_ID =
-            "SELECT * FROM user WHERE id = ?";
+    private static final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = ?";
 
     public StudentDao(Connection connection) {
         super(connection);
@@ -32,8 +30,4 @@ public class StudentDao extends AbstractDao<String, Student>{
         return null;
     }
 
-    @Override
-    public boolean delete(String id) throws DaoException {
-        return false;
-    }
 }

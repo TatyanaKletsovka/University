@@ -80,8 +80,4 @@ public class UserDao extends AbstractDao<String, User> {
         }
     }
 
-    @Override
-    public boolean delete(String id) throws DaoException {
-        return false;
-    }
 }

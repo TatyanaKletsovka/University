@@ -23,31 +23,31 @@ public class DbConfig {
     public DbConfig() {
     }
 
-    public String getConnectionUrlValue() {
+    String getConnectionUrlValue() {
         return connectionUrlValue;
     }
 
-    public String getUserValue() {
+    String getUserValue() {
         return userValue;
     }
 
-    public String getPasswordValue() {
+    String getPasswordValue() {
         return passwordValue;
     }
 
-    public String getAutoReconnectValue() {
+    String getAutoReconnectValue() {
         return autoReconnectValue;
     }
 
-    public String getCharacterEncodingValue() {
+    String getCharacterEncodingValue() {
         return characterEncodingValue;
     }
 
-    public String getUnicodeValue() {
+    String getUnicodeValue() {
         return unicodeValue;
     }
 
-    public String getPoolSizeValue() {
+    String getPoolSizeValue() {
         return poolSizeValue;
     }
 }

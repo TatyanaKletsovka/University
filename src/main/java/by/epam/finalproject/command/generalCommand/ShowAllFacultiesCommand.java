@@ -3,7 +3,7 @@ package by.epam.finalproject.command.generalCommand;
 import by.epam.finalproject.command.AbstractCommand;
 import by.epam.finalproject.command.ActionCommand;
 import by.epam.finalproject.entity.Faculty;
-import by.epam.finalproject.exception.DaoException;
+import by.epam.finalproject.exception.ServiceException;
 import by.epam.finalproject.service.FacultyService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ import static by.epam.finalproject.command.CommandConstant.SHOW_ALL_FACULTIES_GE
 public class ShowAllFacultiesCommand extends AbstractCommand implements ActionCommand {
 
     @Override
-    public String execute(HttpServletRequest request) throws DaoException {
+    public String execute(HttpServletRequest request) throws ServiceException {
 
         FacultyService facultyService = new FacultyService(proxyConnection.getConnection());
         List<Faculty> showAllFaculties = facultyService.findAll();

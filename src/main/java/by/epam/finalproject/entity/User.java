@@ -1,5 +1,7 @@
 package by.epam.finalproject.entity;
 
+import java.util.Objects;
+
 public class User extends Entity{
 
     private String login;
@@ -52,31 +54,21 @@ public class User extends Entity{
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        if (!super.equals(obj)) {
-            return false;
-        }
-
-        User user = (User) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        User user = (User) o;
         return login.equals(user.login) &&
                 password.equals(user.password) &&
                 role == user.role &&
-                firstName == user.firstName &&
-                lastName == user.lastName
-                ;
+                firstName.equals(user.firstName) &&
+                lastName.equals(user.lastName);
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + login.hashCode() + password.hashCode() + role.hashCode();
-        return result;
+        return Objects.hash(super.hashCode(), login, password, role, firstName, lastName);
     }
 
     @Override

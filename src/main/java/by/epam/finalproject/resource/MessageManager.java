@@ -8,9 +8,7 @@ public class MessageManager {
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle("messages");
     public static final Locale DEFAULT_LOCALE = new Locale("", "");
 
-    // класс извлекает информацию из файла messages.properties
     private MessageManager() {
-
     }
 
     public static String getProperty(String key) {

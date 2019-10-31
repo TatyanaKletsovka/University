@@ -50,11 +50,6 @@
                 ${errorUniqueLoginMessage}
             </form>
         </div>
-
-        <div>
-            <%@ include file="/jsp/common/footer.jsp"%>
-        </div>
-
         <script>
             <jsp:directive.include file="/js/registerValidation.js"/>
         </script>

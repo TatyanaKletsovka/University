@@ -22,7 +22,7 @@
            <%@ include file="/jsp/common/mainMenu.jsp"%>
         </div>
 
-        <div class="training_program_description_day">
+        <div class="error_form">
             <h1>
                 ${pageScope.error_number}
             </h1>
@@ -36,10 +36,6 @@
             Status code: ${pageContext.errorData.statusCode}
             <br/>
             Exception: ${pageContext.errorData.throwable}
-        </div>
-
-        <div>
-            <%@ include file="/jsp/common/footer.jsp"%>
         </div>
     </body>
 </html>

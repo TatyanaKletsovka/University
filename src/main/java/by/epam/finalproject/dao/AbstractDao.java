@@ -54,36 +54,5 @@ public abstract class AbstractDao<K, T extends Entity> {
 
     public abstract List<T> findAll() throws DaoException;
     public abstract T findById(K id) throws DaoException;
-    public abstract boolean delete(K id) throws DaoException;
-
-    // Возвращения экземпляра Connection в пул соединений
-    public void returnConnectionInPool() {
-      //  proxyConnection.close();
-    }
-
-    // Получение экземпляра PrepareStatement
-    public PreparedStatement getPrepareStatement(String sql) {
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return statement;
-    }
-
-    // Закрытие PrepareStatement
-    public void closePrepareStatement(PreparedStatement statement) {
-        if (statement != null) {
-            try {
-                statement.close();
-                returnConnectionInPool();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 
 }

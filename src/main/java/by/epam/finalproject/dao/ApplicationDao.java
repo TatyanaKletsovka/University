@@ -3,15 +3,12 @@ package by.epam.finalproject.dao;
 import by.epam.finalproject.builder.ApplicationBuilder;
 import by.epam.finalproject.entity.Application;
 import by.epam.finalproject.exception.DaoException;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApplicationDao extends AbstractDao<String, Application> {
-
-    private final static Logger LOGGER = Logger.getLogger(ApplicationDao.class);
 
     private static final String INSERT_INTO_APPLICATION =
             "INSERT INTO application (faculty_id, user_id) values (?, ?)";
@@ -88,12 +85,11 @@ public class ApplicationDao extends AbstractDao<String, Application> {
     public void updateApplicationStatus(String status, String applicationId) throws DaoException {
 
         executeUpdate(UPDATE_APPLICATION_SET_STATUS_WHERE_ID, status, applicationId);
-        LOGGER.info("Application: " + applicationId + " is updated");
-
     }
 
     @Override
     public Application findById(String id) throws DaoException {
+
         return null;
     }
 
